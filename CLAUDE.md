@@ -107,6 +107,11 @@ The owner is building it for personal use first, with a public App Store release
 - Play mode: the whole screen is the button. The only visible control is a 30 pt ✕ inside a 44 pt hit area. The current line gets a soft band, past lines fade, and upcoming lines stay at AAA contrast.
 - Ready-to-play uses a check mark vs. an empty ring, not colour alone.
 
+## GitHub
+- **Public repo:** https://github.com/neuashwin/moodchords (MIT). `main` tracks `origin/main`.
+- `main` started fresh from a clean snapshot. The older history, which includes the reference images, is on the local branch **`private-history`**. **Never push `private-history`.**
+- `.gitignore` keeps these off GitHub: `Songs Collection/`, `GuitarAppFinal/GuitarAppFinal/BundledSongs/` (the copyrighted songs), `Design References/` and `Design/Moodchords design/uploads/` (other people's images). Before every push, check that nothing matching those got staged.
+
 ## Rules and gotchas
 - **iPhone only** (PRD). The target is set to iPhone only (`SUPPORTED_PLATFORMS = iphoneos iphonesimulator`, `TARGETED_DEVICE_FAMILY = 1`). Bundle ID `com.ashwin.Moodchords`, display name Moodchords. Don't re-add Mac/iPad/Vision; `ChordSpacing` uses `UIFont`.
 - **Storage:** on-device SwiftData only. No accounts, no network, no iCloud for now; the owner decided this.
