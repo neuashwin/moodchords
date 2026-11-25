@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+
+# Xcode per-user and build files
+xcuserdata/
+DerivedData/
+build/
+*.xcresult
+
+# Local Claude settings
+.claude/settings.local.json
+
+# Your song files contain copyrighted lyrics: keep them on this Mac only,
+# so they never end up on GitHub if this repo is pushed later.
+Songs Collection/
+# The copies built into Debug builds (BundledSongs.swift) are the same songs.
+GuitarAppFinal/GuitarAppFinal/BundledSongs/
+
+# Style reference images: other people's work, kept on this Mac only.
+Design References/
+Design/Moodchords design/uploads/
+
+# The design zip is already unzipped in Design/
+*.zip

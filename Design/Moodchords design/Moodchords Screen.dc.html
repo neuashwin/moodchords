@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Barlow+Condensed:wght@600;700;800&family=DM+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap">
+<style>body{margin:0}a{color:#B4430A}a:hover{color:#F2742A}</style>
+</helmet>
+<div style="{{ vars }}">
+<div style="display:inline-block;padding:14px;font-family:Barlow,'Noto Sans Devanagari',sans-serif;color:var(--fg)">
+<sc-if value="{{ isPhone }}" hint-placeholder-val="{{ true }}">
+<div onClick="{{ tapRoot }}" style="width:402px;height:874px;border-radius:58px;overflow:hidden;position:relative;background:{{ phoneBg }};color:var(--fg);box-shadow:0 0 0 10px #1a1612,0 0 0 11.5px #4a4038,0 26px 50px rgba(20,12,6,0.35);isolation:isolate;-webkit-font-smoothing:antialiased">
+<div style="position:absolute;top:0;left:0;right:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:4px 30px 0 48px;box-sizing:border-box;z-index:60;font:600 17px/1 -apple-system,'SF Pro Text',Barlow,sans-serif;color:var(--fg);pointer-events:none"><span>9:41</span><div style="display:flex;align-items:center;gap:5px"><span style="font-family:'Material Symbols Rounded';font-size:19px;line-height:1;font-variation-settings:'FILL' 1">signal_cellular_alt</span><span style="font-family:'Material Symbols Rounded';font-size:19px;line-height:1;font-variation-settings:'FILL' 1">wifi</span><div style="width:25px;height:12px;border-radius:4px;box-shadow:inset 0 0 0 1px var(--fg2);padding:2px;box-sizing:border-box"><div style="width:75%;height:100%;border-radius:2px;background:var(--fg)"></div></div></div></div>
+<div style="position:absolute;top:11px;left:139px;width:124px;height:36px;border-radius:20px;background:#000;z-index:61"></div>
+
+<sc-if value="{{ s.homeBg }}">
+<div style="position:absolute;inset:0;padding-top:54px;overflow:hidden">
+<div style="display:flex;justify-content:flex-end;gap:10px;padding:6px 20px 0">
+<div style="width:44px;height:44px;border-radius:22px;background:var(--glass);backdrop-filter:blur(20px) saturate(1.6);box-shadow:inset 0 0 0 0.5px var(--line),0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1">search</span></div>
+<div onClick="{{ goAdd }}" style="width:44px;height:44px;border-radius:22px;background:var(--glass);backdrop-filter:blur(20px) saturate(1.6);box-shadow:inset 0 0 0 0.5px var(--line),0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:26px;line-height:1">add</span></div>
+</div>
+<div style="padding:4px 22px 0"><div style="font:800 42px/1 Barlow;letter-spacing:-0.02em">Moodchords</div><div style="font:500 17px/1.3 Barlow;color:var(--fg2);margin-top:6px">What's the vibe tonight?</div></div>
+<div onClick="{{ goSurprise }}" style="margin:18px 20px 0;height:68px;border-radius:34px;background:linear-gradient(180deg,#EE6A1F,#C2440A);box-shadow:0 10px 24px rgba(194,68,10,0.32),inset 0 1px 0 rgba(255,255,255,0.3);display:flex;align-items:center;gap:14px;padding:0 10px 0 22px;color:#fff">
+<span style="font-family:'Material Symbols Rounded';font-size:28px;line-height:1">shuffle</span>
+<div style="flex:1"><div style="font:800 20px/1.1 Barlow">Surprise me</div><div style="font:600 14px/1.25 Barlow">From {{ readyCount }} songs you're ready to play</div></div>
+<div style="width:48px;height:48px;border-radius:24px;background:rgba(255,255,255,0.22);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:30px;line-height:1;font-variation-settings:'FILL' 1">play_arrow</span></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:20px 20px 130px">
+<sc-for list="{{ moodTiles }}" as="t" hint-placeholder-count="9">
+<div onClick="{{ t.onTap }}" style="position:relative;height:118px;border-radius:26px;overflow:hidden;background:{{ t.color }};color:#1E1915;padding:14px 16px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+<span style="font-family:'Material Symbols Rounded';font-size:26px;line-height:1;font-variation-settings:'FILL' 1">{{ t.icon }}</span>
+<span style="position:absolute;right:-16px;bottom:-24px;font-family:'Material Symbols Rounded';font-size:116px;line-height:1;opacity:0.13;font-variation-settings:'FILL' 1">{{ t.icon }}</span>
+<div><div style="font:700 21px/1.05 Barlow">{{ t.name }}</div><div style="font:500 12px/1.2 'DM Mono',monospace;letter-spacing:0.04em;margin-top:5px;opacity:0.78">{{ t.countLabel }}</div></div>
+</div>
+</sc-for>
+<div onClick="{{ goMoods }}" style="height:118px;border-radius:26px;box-shadow:inset 0 0 0 1.5px var(--fg3);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;color:var(--fg2)"><span style="font-family:'Material Symbols Rounded';font-size:30px;line-height:1">add</span><span style="font:700 17px Barlow">New mood</span></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.homeEmpty }}">
+<div style="position:absolute;inset:0;padding-top:54px;overflow:hidden">
+<div style="position:absolute;right:-26px;top:120px;writing-mode:vertical-rl;font:800 168px/0.82 'Barlow Condensed';letter-spacing:-0.01em;color:var(--chip);text-transform:uppercase;white-space:nowrap">Baja ta</div>
+<div style="display:flex;justify-content:flex-end;padding:6px 20px 0"><div style="width:44px;height:44px;border-radius:22px;background:var(--glass);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 0.5px var(--line);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:26px;line-height:1">add</span></div></div>
+<div style="padding:4px 22px 0"><div style="font:800 42px/1 Barlow;letter-spacing:-0.02em">Moodchords</div></div>
+<div style="position:relative;padding:96px 24px 0;max-width:300px">
+<div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--chord)">"OE, BAJA TA!"</div>
+<div style="font:800 38px/1.05 Barlow;letter-spacing:-0.01em;margin-top:12px">Add your first song</div>
+<div style="font:500 17px/1.4 Barlow;color:var(--fg2);margin-top:12px;text-wrap:pretty">Paste a chord sheet or import a file. Next time someone asks you to play, it's already sorted by mood.</div>
+</div>
+<div style="position:relative;display:flex;flex-direction:column;gap:10px;padding:28px 20px 0">
+<div style="height:64px;border-radius:32px;background:linear-gradient(180deg,#EE6A1F,#C2440A);color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font:800 19px Barlow;box-shadow:0 10px 24px rgba(194,68,10,0.3)"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1">content_paste</span>Paste song</div>
+<div style="height:64px;border-radius:32px;background:var(--glass);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 0.5px var(--line),var(--shadow);display:flex;align-items:center;justify-content:center;gap:10px;font:700 19px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1">upload_file</span>Import file<span style="font:500 12px 'DM Mono',monospace;color:var(--fg2)">.TXT · .CHO</span></div>
+</div>
+<div style="position:relative;padding:34px 22px 0"><div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2)">YOUR SONGS WILL SORT INTO</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+<sc-for list="{{ moodTiles }}" as="t" hint-placeholder-count="9"><div style="height:30px;padding:0 11px 0 8px;border-radius:15px;background:{{ t.color }};color:#1E1915;display:flex;align-items:center;gap:5px;font:700 13px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:16px;line-height:1;font-variation-settings:'FILL' 1">{{ t.icon }}</span>{{ t.name }}</div></sc-for>
+</div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showTabs }}">
+<div style="position:absolute;left:16px;right:16px;bottom:26px;height:66px;border-radius:33px;background:var(--glass);backdrop-filter:blur(24px) saturate(1.8);box-shadow:inset 0 0 0 0.5px var(--line),0 8px 30px rgba(0,0,0,0.16);display:grid;grid-template-columns:repeat(4,1fr);align-items:center;padding:0 6px;box-sizing:border-box;z-index:30">
+<sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="4"><div onClick="{{ tb.onTap }}" style="height:54px;border-radius:27px;background:{{ tb.bg }};color:{{ tb.fg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;font-variation-settings:{{ tb.fv }}">{{ tb.icon }}</span><span style="font:600 11px/1 Barlow">{{ tb.name }}</span></div></sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.crowd }}">
+<div style="position:absolute;inset:0;background:rgba(10,6,3,0.4);z-index:50"></div>
+<div style="position:absolute;left:8px;right:8px;bottom:8px;border-radius:46px;background:var(--sheet);box-shadow:0 -10px 40px rgba(0,0,0,0.25);z-index:51;padding:10px 20px 30px">
+<div style="width:38px;height:5px;border-radius:3px;background:var(--fg3);margin:0 auto 18px"></div>
+<div style="display:flex;align-items:center;gap:10px"><div style="display:flex;align-items:center;gap:6px;height:32px;padding:0 12px 0 10px;border-radius:16px;background:{{ mood.color }};color:#1E1915;font:700 14px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:18px;line-height:1;font-variation-settings:'FILL' 1">{{ mood.icon }}</span>{{ mood.name }}</div><span style="font:500 12px 'DM Mono',monospace;color:var(--fg2)">{{ mood.countLabel }}</span></div>
+<div style="font:800 32px/1.05 Barlow;margin-top:14px;letter-spacing:-0.01em">Who's listening?</div>
+<div style="font:500 16px/1.35 Barlow;color:var(--fg2);margin-top:6px">One tap. You can change it on the song list.</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px">
+<sc-for list="{{ crowdOpts }}" as="c" hint-placeholder-count="4">
+<div onClick="{{ c.onTap }}" style="height:108px;border-radius:26px;background:var(--card2);box-shadow:inset 0 0 0 0.5px var(--line),var(--shadow);padding:14px 16px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+<div style="display:flex;justify-content:space-between;align-items:flex-start"><span style="font-family:'Material Symbols Rounded';font-size:30px;line-height:1">{{ c.icon }}</span><span style="font:500 12px 'DM Mono',monospace;color:var(--fg2)">{{ c.count }}</span></div>
+<div><div style="font:700 20px/1.1 Barlow">{{ c.name }}</div><div style="font:500 13px/1.2 Barlow;color:var(--fg2);margin-top:2px">{{ c.sub }}</div></div>
+</div>
+</sc-for>
+</div>
+<div onClick="{{ pickAnyone }}" style="margin-top:10px;height:56px;border-radius:28px;background:var(--chip);display:flex;align-items:center;justify-content:center;gap:8px;font:700 17px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">all_inclusive</span>{{ anyoneLabel }}</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.addEntry }}">
+<div style="position:absolute;inset:0;background:rgba(10,6,3,0.4);z-index:50"></div>
+<div style="position:absolute;left:8px;right:8px;bottom:8px;border-radius:46px;background:var(--sheet);box-shadow:0 -10px 40px rgba(0,0,0,0.25);z-index:51;padding:10px 20px 30px">
+<div style="width:38px;height:5px;border-radius:3px;background:var(--fg3);margin:0 auto 18px"></div>
+<div style="font:800 32px/1.05 Barlow;letter-spacing:-0.01em">Add a song</div>
+<div style="font:500 16px/1.35 Barlow;color:var(--fg2);margin-top:6px">Bring in songs you already play.</div>
+<div style="display:flex;flex-direction:column;gap:10px;margin-top:20px">
+<div onClick="{{ goPaste }}" style="display:flex;align-items:center;gap:14px;padding:16px;border-radius:26px;background:var(--card2);box-shadow:inset 0 0 0 0.5px var(--line),var(--shadow)"><div style="width:52px;height:52px;border-radius:26px;background:linear-gradient(180deg,#EE6A1F,#C2440A);color:#fff;display:flex;align-items:center;justify-content:center;flex:none"><span style="font-family:'Material Symbols Rounded';font-size:26px;line-height:1">content_paste</span></div><div style="flex:1"><div style="font:700 19px Barlow">Paste song</div><div style="font:500 14px/1.3 Barlow;color:var(--fg2)">Lyrics with [chords] from notes or a website</div></div><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;color:var(--fg3)">chevron_right</span></div>
+<div onClick="{{ goImport }}" style="display:flex;align-items:center;gap:14px;padding:16px;border-radius:26px;background:var(--card2);box-shadow:inset 0 0 0 0.5px var(--line),var(--shadow)"><div style="width:52px;height:52px;border-radius:26px;background:var(--chip);display:flex;align-items:center;justify-content:center;flex:none"><span style="font-family:'Material Symbols Rounded';font-size:26px;line-height:1">upload_file</span></div><div style="flex:1"><div style="font:700 19px Barlow">Import file</div><div style="font:500 14px/1.3 Barlow;color:var(--fg2)">.txt or ChordPro (.cho), one song or a whole folder</div></div><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;color:var(--fg3)">chevron_right</span></div>
+</div>
+<div style="display:flex;align-items:center;justify-content:center;gap:6px;height:48px;margin-top:8px;font:700 15px Barlow;color:var(--chord)"><span style="font-family:'Material Symbols Rounded';font-size:20px;line-height:1">description</span>Start from the template</div>
+</div>
+</sc-if>
+<sc-if value="{{ s.list }}">
+<div style="position:absolute;inset:0;padding-top:54px;overflow:hidden">
+<div style="display:flex;justify-content:space-between;padding:6px 20px 0">
+<div onClick="{{ goHome }}" style="width:44px;height:44px;border-radius:22px;background:var(--glass);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 0.5px var(--line),0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:28px;line-height:1">chevron_left</span></div>
+<div style="width:44px;height:44px;border-radius:22px;background:var(--glass);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 0.5px var(--line),0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1">search</span></div>
+</div>
+<div style="padding:12px 22px 0;display:flex;align-items:center;gap:12px">
+<div style="width:52px;height:52px;border-radius:26px;background:{{ mood.color }};color:#1E1915;display:flex;align-items:center;justify-content:center;flex:none"><span style="font-family:'Material Symbols Rounded';font-size:28px;line-height:1;font-variation-settings:'FILL' 1">{{ mood.icon }}</span></div>
+<div style="font:800 38px/1 Barlow;letter-spacing:-0.01em">{{ mood.name }}</div>
+<span style="font-family:'Material Symbols Rounded';font-size:26px;line-height:1;color:var(--fg2)">expand_more</span>
+</div>
+<div style="display:flex;gap:6px;padding:16px 20px 0">
+<sc-for list="{{ crowdChips }}" as="c" hint-placeholder-count="5"><div onClick="{{ c.onTap }}" style="height:44px;padding:0 13px;border-radius:22px;display:flex;align-items:center;gap:3px;font:700 15px Barlow;white-space:nowrap;background:{{ c.bg }};color:{{ c.fg }}"><span style="font-family:'Material Symbols Rounded';font-size:18px;line-height:1;width:{{ c.iconW }};overflow:hidden">{{ c.icon }}</span>{{ c.name }}</div></sc-for>
+</div>
+<sc-if value="{{ listHas }}">
+<sc-for list="{{ listSections }}" as="sec" hint-placeholder-count="2">
+<div style="padding:22px 24px 8px;display:flex;justify-content:space-between;font:500 12px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2)"><span>{{ sec.label }}</span><span>{{ sec.count }}</span></div>
+<div style="margin:0 16px;border-radius:26px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line),var(--shadow);overflow:hidden">
+<sc-for list="{{ sec.rows }}" as="r" hint-placeholder-count="3">
+<div onClick="{{ r.onTap }}" style="display:flex;gap:12px;padding:14px;border-top:{{ r.border }};align-items:flex-start">
+<span style="font-family:'Material Symbols Rounded';font-size:26px;line-height:1;font-variation-settings:{{ r.readyFv }};color:{{ r.readyColor }}">{{ r.readyIcon }}</span>
+<div style="flex:1;min-width:0">
+<div style="font:700 18px/1.3 Barlow,'Noto Sans Devanagari',sans-serif;text-wrap:pretty">{{ r.title }}</div>
+<div style="font:500 14px/1.3 Barlow;color:var(--fg2)">{{ r.artist }}</div>
+<div style="font:500 11.5px/1 'DM Mono',monospace;letter-spacing:0.03em;margin-top:7px">{{ r.meta }}</div>
+<div style="font:italic 500 13.5px/1.4 Barlow,'Noto Sans Devanagari',sans-serif;color:var(--fg2);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.first }}</div>
+</div>
+<span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;font-variation-settings:{{ r.starFv }};color:{{ r.starColor }}">star</span>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</sc-if>
+<sc-if value="{{ listEmpty }}">
+<div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:96px 36px 0">
+<div style="width:96px;height:96px;border-radius:48px;background:{{ mood.color }};color:#1E1915;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:48px;line-height:1;font-variation-settings:'FILL' 1">{{ mood.icon }}</span></div>
+<div style="font:800 26px/1.15 Barlow;margin-top:22px;text-wrap:balance">{{ emptyV.title }}</div>
+<div style="font:500 16px/1.4 Barlow;color:var(--fg2);margin-top:10px;text-wrap:pretty">{{ emptyV.body }}</div>
+<div onClick="{{ emptyV.onAlt }}" style="margin-top:26px;height:54px;padding:0 26px;border-radius:27px;background:var(--fg);color:var(--bg);display:flex;align-items:center;font:700 17px Barlow">{{ emptyV.alt }}</div>
+<div onClick="{{ goAdd }}" style="margin-top:8px;height:48px;display:flex;align-items:center;gap:6px;font:700 16px Barlow;color:var(--chord)"><span style="font-family:'Material Symbols Rounded';font-size:20px;line-height:1">add</span>Add a song</div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ menuOn }}">
+<div style="position:absolute;inset:0;z-index:50;backdrop-filter:blur(12px);background:rgba(10,6,3,0.32)"></div>
+<div style="position:absolute;left:16px;right:16px;top:262px;z-index:51;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;gap:12px;padding:16px;border-radius:26px;background:var(--sheet);box-shadow:0 20px 50px rgba(0,0,0,0.3);transform:scale(1.02)">
+<span style="font-family:'Material Symbols Rounded';font-size:26px;line-height:1;font-variation-settings:{{ menuRow.readyFv }};color:{{ menuRow.readyColor }}">{{ menuRow.readyIcon }}</span>
+<div style="flex:1"><div style="font:700 18px/1.3 Barlow">{{ menuRow.title }}</div><div style="font:500 14px Barlow;color:var(--fg2)">{{ menuRow.artist }}</div><div style="font:500 11.5px 'DM Mono',monospace;margin-top:7px">{{ menuRow.meta }}</div></div>
+</div>
+<div style="width:260px;border-radius:24px;background:var(--sheet);box-shadow:0 20px 50px rgba(0,0,0,0.3);overflow:hidden;font:600 17px Barlow">
+<div style="height:50px;padding:0 18px;display:flex;align-items:center;justify-content:space-between">Unfavourite<span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">star</span></div>
+<div style="height:50px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--line)">Mark not ready<span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">remove_done</span></div>
+<div style="height:50px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--line)">Add to setlist…<span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">playlist_add</span></div>
+<div style="height:8px;background:var(--chip)"></div>
+<div style="height:50px;padding:0 18px;display:flex;align-items:center;justify-content:space-between">Edit song<span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">edit</span></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.song }}">
+<div style="position:absolute;inset:0;padding-top:54px;overflow:hidden">
+<div style="display:flex;align-items:center;gap:10px;padding:6px 20px 0">
+<div onClick="{{ goList }}" style="width:44px;height:44px;border-radius:22px;background:var(--glass);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 0.5px var(--line),0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:28px;line-height:1">chevron_left</span></div>
+<div style="flex:1"></div>
+<div style="width:44px;height:44px;border-radius:22px;background:var(--glass);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 0.5px var(--line),0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;font-variation-settings:{{ sv.favFv }};color:{{ sv.favC }}">favorite</span></div>
+<div onClick="{{ goEdit }}" style="height:44px;padding:0 18px;border-radius:22px;background:var(--glass);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 0.5px var(--line),0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;font:700 16px Barlow">Edit</div>
+</div>
+<div style="padding:12px 22px 0">
+<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">
+<div style="display:flex;align-items:center;gap:5px;height:30px;padding:0 11px 0 9px;border-radius:15px;background:{{ sv.mood.color }};color:#1E1915;font:700 13px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:16px;line-height:1;font-variation-settings:'FILL' 1">{{ sv.mood.icon }}</span>{{ sv.mood.name }}</div>
+<sc-for list="{{ sv.crowdNames }}" as="c" hint-placeholder-count="2"><span style="height:30px;padding:0 11px;border-radius:15px;background:var(--chip);display:flex;align-items:center;font:600 13px Barlow">{{ c }}</span></sc-for>
+</div>
+<div style="display:flex;align-items:flex-end;gap:12px;margin-top:10px">
+<div style="flex:1;min-width:0"><div style="font:800 34px/1.2 Barlow,'Noto Sans Devanagari',sans-serif;letter-spacing:-0.01em">{{ sv.title }}</div><div style="font:500 16px/1.3 Barlow;color:var(--fg2);margin-top:2px">{{ sv.artist }}</div></div>
+<div style="display:flex;align-items:center;gap:8px;height:44px;padding:0 4px 0 12px;border-radius:22px;background:var(--chip);flex:none"><span style="font:700 13px Barlow">Ready</span><div style="position:relative;width:46px;height:28px;border-radius:14px;background:{{ sv.readyBg }}"><div style="position:absolute;top:3px;left:{{ sv.knobX }};width:22px;height:22px;border-radius:11px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.25)"></div></div></div>
+</div>
+</div>
+<div style="margin:14px 16px 0;border-radius:30px;background:var(--card);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 0.5px var(--line),var(--shadow);padding:16px 18px 18px">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font:500 12px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2)">CUE CARD</span><div style="display:flex;align-items:center;gap:6px;height:36px;padding:0 13px 0 9px;border-radius:18px;background:var(--chip);font:700 14px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:21px;line-height:1;font-variation-settings:'FILL' 1;color:var(--danger)">smart_display</span>Listen first</div></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);margin-top:10px">
+<div><div style="font:500 11px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2)">KEY</div><div style="font:800 30px/1.1 Barlow;margin-top:3px">{{ sv.keyL }}</div></div>
+<div><div style="font:500 11px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2)">CAPO</div><div style="font:800 30px/1.1 Barlow;margin-top:3px">{{ sv.capoL }}</div></div>
+<div><div style="font:500 11px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2)">LENGTH</div><div style="font:800 30px/1.1 Barlow;margin-top:3px">{{ sv.lenL }}</div></div>
+</div>
+<div style="height:1px;background:var(--line);margin:14px 0 12px"></div>
+<div style="display:flex;justify-content:space-between"><span style="font:500 11px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2)">STRUM</span><span style="font:500 11px 'DM Mono',monospace;color:var(--fg2)">{{ sv.strumText }}</span></div>
+<div style="display:grid;grid-template-columns:repeat(8,1fr);margin-top:6px;text-align:center">
+<sc-for list="{{ sv.strum }}" as="b" hint-placeholder-count="8"><div><div style="font:800 30px/1 Barlow;color:{{ b.c }}">{{ b.a }}</div><div style="font:500 11px 'DM Mono',monospace;color:var(--fg2);margin-top:3px">{{ b.beat }}</div></div></sc-for>
+</div>
+<div style="height:1px;background:var(--line);margin:12px 0"></div>
+<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span style="font:500 11px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2);margin-right:4px">INTRO</span>
+<sc-for list="{{ sv.intro }}" as="ch" hint-placeholder-count="3"><span style="height:30px;min-width:30px;padding:0 9px;box-sizing:border-box;border-radius:15px;background:var(--chip);font:800 16px Barlow;color:var(--chord);display:flex;align-items:center;justify-content:center">{{ ch }}</span></sc-for>
+<span style="font:500 13px 'DM Mono',monospace;color:var(--fg2)">{{ sv.introX }}</span></div>
+<div style="display:flex;flex-wrap:wrap;column-gap:0.28em;margin-top:10px;font:600 19px/1.45 Barlow,'Noto Sans Devanagari',sans-serif">
+<sc-for list="{{ sv.first }}" as="w" hint-placeholder-count="6"><span style="position:relative;display:inline-block;padding-top:19px"><span style="position:absolute;left:0;top:0;font:800 15px/1 Barlow;color:var(--chord);white-space:nowrap">{{ w.c }}</span>{{ w.w }}</span></sc-for>
+</div>
+</div>
+<sc-if value="{{ sv.capoNote }}"><div style="display:flex;align-items:center;gap:7px;margin:10px 24px 0;font:500 14px Barlow;color:var(--fg2)"><span style="font-family:'Material Symbols Rounded';font-size:18px;line-height:1">info</span>Tune before putting the capo on.<span onClick="{{ goTuner }}" style="font-weight:700;color:var(--chord)">Tuner</span></div></sc-if>
+<div style="display:flex;gap:16px;padding:14px 22px 0;overflow:hidden">
+<sc-for list="{{ sv.diagrams }}" as="d" hint-placeholder-count="4">
+<div style="flex:none;display:flex;flex-direction:column;align-items:center;gap:3px">
+<div style="font:800 18px/1 Barlow;color:var(--chord);white-space:nowrap">{{ d.name }}</div>
+<div style="position:relative;width:62px;height:14px"><sc-for list="{{ d.marks }}" as="k"><span style="position:absolute;top:0;left:{{ k.x }}px;width:12px;text-align:center;font:600 10px/14px 'DM Mono',monospace;color:{{ k.c }}">{{ k.t }}</span></sc-for></div>
+<div style="position:relative;width:61.5px;height:73.5px;border-radius:16px 16px 5px 5px;background:repeating-linear-gradient(90deg,var(--fg3) 0 1.5px,transparent 1.5px 12px),repeating-linear-gradient(180deg,var(--fg3) 0 1.5px,transparent 1.5px 18px);box-shadow:inset 0 0 0 1.5px var(--fg3)">
+<sc-if value="{{ d.barre }}"><div style="position:absolute;left:-5px;top:3px;width:72px;height:13px;border-radius:7px;background:var(--fg)"></div></sc-if>
+<sc-for list="{{ d.dots }}" as="o"><div style="position:absolute;left:{{ o.x }}px;top:{{ o.y }}px;width:13px;height:13px;border-radius:7px;background:{{ o.bg }}"></div></sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="display:flex;gap:8px;padding:16px 16px 0">
+<div style="flex:1;height:52px;border-radius:26px;background:var(--chip);display:flex;align-items:center;justify-content:space-between;padding:0 4px"><div style="width:44px;height:44px;border-radius:22px;background:var(--card2);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">remove</span></div><div style="text-align:center"><div style="font:500 9.5px 'DM Mono',monospace;letter-spacing:0.06em;color:var(--fg2)">TRANSPOSE</div><div style="font:800 17px/1.1 Barlow">0</div></div><div style="width:44px;height:44px;border-radius:22px;background:var(--card2);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">add</span></div></div>
+<div style="flex:1;height:52px;border-radius:26px;background:var(--chip);display:flex;align-items:center;justify-content:space-between;padding:0 4px"><div style="width:44px;height:44px;border-radius:22px;background:var(--card2);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">remove</span></div><div style="text-align:center"><div style="font:500 9.5px 'DM Mono',monospace;letter-spacing:0.06em;color:var(--fg2)">CAPO</div><div style="font:800 17px/1.1 Barlow">{{ sv.capoL }}</div></div><div style="width:44px;height:44px;border-radius:22px;background:var(--card2);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">add</span></div></div>
+<div style="width:52px;height:52px;border-radius:26px;background:var(--chip);display:flex;align-items:center;justify-content:center;font:800 19px Barlow;flex:none">Aa</div>
+</div>
+<div style="margin:18px 24px 0;display:flex;flex-direction:column;gap:6px">
+<sc-for list="{{ sv.preview }}" as="l" hint-placeholder-count="6">
+<sc-if value="{{ l.section }}"><div style="font:500 11px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2);margin-top:6px">{{ l.label }}</div></sc-if>
+<sc-if value="{{ l.lyric }}"><div style="display:flex;flex-wrap:wrap;column-gap:0.26em;font:500 17px/1.45 Barlow,'Noto Sans Devanagari',sans-serif"><sc-for list="{{ l.words }}" as="w"><span style="position:relative;display:inline-block;padding-top:17px"><span style="position:absolute;left:0;top:0;font:800 14px/1 Barlow;color:var(--chord);white-space:nowrap">{{ w.c }}</span>{{ w.w }}</span></sc-for></div></sc-if>
+</sc-for>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(to bottom,transparent,var(--bg) 62%);pointer-events:none"></div>
+<div onClick="{{ goPlay }}" style="position:absolute;left:50%;bottom:38px;transform:translateX(-50%);height:70px;min-width:240px;padding:0 28px 0 34px;box-sizing:border-box;border-radius:35px;background:linear-gradient(180deg,#EE6A1F,#C2440A);color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 12px 30px rgba(194,68,10,0.4),inset 0 1px 0 rgba(255,255,255,0.3)"><span style="font:800 23px Barlow">Play</span><span style="font:600 14px 'DM Mono',monospace;opacity:0.92">{{ sv.lenL }}</span><span style="font-family:'Material Symbols Rounded';font-size:34px;line-height:1;font-variation-settings:'FILL' 1">play_arrow</span></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.play }}">
+<div style="position:absolute;inset:0;overflow:hidden">
+<div style="position:absolute;top:58px;left:28px;right:28px;height:4px;border-radius:2px;background:var(--chip);z-index:8"><div style="height:4px;border-radius:2px;background:var(--chord);width:{{ pv.progress }}"></div></div>
+<div style="position:absolute;top:70px;left:12px;right:20px;display:flex;align-items:center;justify-content:space-between;z-index:8">
+<div onClick="{{ goSong }}" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><div style="width:30px;height:30px;border-radius:15px;background:var(--chip);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:18px;line-height:1;color:var(--fg2)">close</span></div></div>
+<div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2)">{{ pv.label }}</div>
+<div style="width:44px;text-align:right;font:500 12px 'DM Mono',monospace;color:var(--fg2)">{{ pv.remain }}</div>
+</div>
+<div style="position:absolute;top:0;left:0;right:0;height:150px;background:linear-gradient(var(--stage) 65%,transparent);z-index:7;pointer-events:none"></div>
+<div style="position:absolute;top:132px;left:0;right:0;padding:0 26px;display:flex;flex-direction:column;gap:14px;opacity:{{ pv.dim }}">
+<sc-for list="{{ pv.lines }}" as="l" hint-placeholder-count="5">
+<sc-if value="{{ l.section }}"><div style="font:500 13px 'DM Mono',monospace;letter-spacing:0.14em;color:var(--fg3);margin-top:8px">{{ l.label }}</div></sc-if>
+<sc-if value="{{ l.lyric }}"><div style="display:flex;flex-wrap:wrap;column-gap:0.26em;row-gap:2px;padding:10px 14px 12px;margin:0 -14px;border-radius:24px;background:{{ l.bg }};color:{{ l.color }};font:600 30px/1.4 Barlow,'Noto Sans Devanagari',sans-serif"><sc-for list="{{ l.words }}" as="w"><span style="position:relative;display:inline-block;padding-top:27px"><span style="position:absolute;left:0;top:0;font:800 23px/1 Barlow;color:{{ l.chord }};white-space:nowrap">{{ w.c }}</span>{{ w.w }}</span></sc-for></div></sc-if>
+</sc-for>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;height:140px;background:linear-gradient(transparent,var(--stage));pointer-events:none"></div>
+
+<sc-if value="{{ pv.countin }}"><div style="position:absolute;inset:0;z-index:9;display:flex;flex-direction:column;align-items:center;justify-content:center">
+<div style="font:500 13px 'DM Mono',monospace;letter-spacing:0.14em;color:var(--fg2)">GET READY</div>
+<div style="font:800 270px/0.85 'Barlow Condensed';color:var(--chord);margin-top:10px">{{ pv.count }}</div>
+<div style="display:flex;gap:8px;align-items:center;margin-top:26px"><span style="font:500 12px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2);margin-right:4px">INTRO</span><sc-for list="{{ sv.intro }}" as="ch"><span style="height:44px;min-width:44px;padding:0 12px;box-sizing:border-box;border-radius:22px;background:var(--chip);font:800 22px Barlow;color:var(--chord);display:flex;align-items:center;justify-content:center">{{ ch }}</span></sc-for><span style="font:500 15px 'DM Mono',monospace;color:var(--fg2)">{{ sv.introX }}</span></div>
+<div style="display:flex;gap:14px;margin-top:22px"><sc-for list="{{ sv.strum }}" as="b"><span style="font:800 32px/1 Barlow;color:{{ b.c }}">{{ b.a }}</span></sc-for></div>
+<div style="font:500 16px Barlow;color:var(--fg2);margin-top:34px">Tap to skip the count</div>
+</div></sc-if>
+
+<sc-if value="{{ pv.paused }}"><div style="position:absolute;inset:0;z-index:9;backdrop-filter:blur(7px);background:var(--scrim);display:flex;flex-direction:column;align-items:center;justify-content:center">
+<div style="width:116px;height:116px;border-radius:58px;background:var(--chip);box-shadow:inset 0 0 0 0.5px var(--line);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:64px;line-height:1;font-variation-settings:'FILL' 1">play_arrow</span></div>
+<div style="font:800 36px Barlow;margin-top:22px">Paused</div>
+<div style="font:600 19px Barlow;color:var(--fg2);margin-top:4px">Tap anywhere to resume</div>
+<div style="font:500 13px 'DM Mono',monospace;color:var(--fg2);margin-top:14px">1:03 OF 2:45</div>
+<div style="position:absolute;bottom:70px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:12px;font:600 15px Barlow;color:var(--fg2)">
+<div style="display:flex;align-items:center;gap:8px"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">swipe_vertical</span>Swipe up or down to change speed</div>
+<div style="display:flex;align-items:center;gap:8px"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">keyboard_double_arrow_down</span>Swipe down from the top to exit</div>
+</div>
+</div></sc-if>
+
+<sc-if value="{{ pv.speed }}"><div style="position:absolute;top:116px;left:50%;transform:translateX(-50%);z-index:9;height:62px;padding:0 10px 0 16px;border-radius:31px;background:var(--sheet);box-shadow:0 12px 34px rgba(0,0,0,0.28),inset 0 0 0 0.5px var(--line);display:flex;align-items:center;gap:8px;white-space:nowrap">
+<span style="font-family:'Material Symbols Rounded';font-size:30px;line-height:1;color:var(--chord)">keyboard_double_arrow_up</span><span style="font:800 21px Barlow">Faster</span><span style="font:600 15px Barlow;color:var(--fg2)">· saved for this song</span><span style="font:500 13px 'DM Mono',monospace;height:42px;padding:0 10px;border-radius:21px;background:var(--chip);display:flex;align-items:center">1.1×</span>
+</div></sc-if>
+
+<sc-if value="{{ pv.finished }}"><div style="position:absolute;inset:0;z-index:9;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px">
+<div style="font:500 13px 'DM Mono',monospace;letter-spacing:0.14em;color:var(--fg2)">SONG FINISHED</div>
+<div style="font:800 30px/1.2 Barlow,'Noto Sans Devanagari',sans-serif;margin-top:8px;text-align:center">That was {{ sv.title }}</div>
+<div style="margin-top:28px;width:100%;box-sizing:border-box;border-radius:32px;background:var(--sheet);box-shadow:0 20px 50px rgba(0,0,0,0.25),inset 0 0 0 0.5px var(--line);padding:18px">
+<div style="font:500 11px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2)">NEXT · FRIDAY CAMPFIRE · 2 OF 5</div>
+<div style="display:flex;gap:14px;align-items:center;margin-top:14px">
+<div style="width:64px;height:64px;border-radius:20px;background:oklch(0.8 0.11 10);color:#1E1915;display:flex;align-items:center;justify-content:center;flex:none"><span style="font-family:'Material Symbols Rounded';font-size:32px;line-height:1;font-variation-settings:'FILL' 1">favorite</span></div>
+<div style="flex:1;min-width:0"><div style="font:800 26px/1.1 Barlow">Perfect</div><div style="font:500 16px Barlow;color:var(--fg2)">Ed Sheeran</div><div style="font:500 12px 'DM Mono',monospace;margin-top:6px">AB · CAPO 1 · 4:23</div></div>
+<div style="width:66px;height:66px;border-radius:33px;background:conic-gradient(var(--chord) 0 80%,var(--chip) 80% 100%);display:flex;align-items:center;justify-content:center;flex:none"><div style="width:54px;height:54px;border-radius:27px;background:var(--sheet);display:flex;align-items:center;justify-content:center;font:800 30px 'Barlow Condensed'">5</div></div>
+</div>
+<div style="margin-top:14px;padding:12px 14px;border-radius:18px;background:var(--chip);font:600 15px Barlow;display:flex;gap:8px;align-items:center"><span style="font-family:'Material Symbols Rounded';font-size:20px;line-height:1">info</span>Move the capo to fret 1</div>
+</div>
+<div style="font:700 18px Barlow;margin-top:26px">Tap to start now</div>
+<div style="font:500 15px Barlow;color:var(--fg2);margin-top:4px">Swipe down to end the jam</div>
+</div></sc-if>
+</div>
+</sc-if>
+<sc-if value="{{ s.tuner }}">
+<div style="position:absolute;inset:0;padding-top:54px">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 20px 0">
+<div onClick="{{ goHome }}" style="width:44px;height:44px;border-radius:22px;background:var(--chip);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1">close</span></div>
+<div style="font:700 18px Barlow">Tuner</div>
+<div style="height:32px;padding:0 10px;border-radius:16px;background:var(--chip);display:flex;align-items:center;font:500 11px 'DM Mono',monospace">A4 · 440</div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;margin-top:34px">
+<div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.12em;color:var(--fg2)">{{ tv.top }}</div>
+<div style="font:800 240px/0.85 'Barlow Condensed';color:{{ tv.noteColor }};margin-top:22px;height:204px">{{ tv.note }}</div>
+<div style="font:700 24px Barlow;margin-top:14px">{{ tv.string }}</div>
+<div style="font:500 13px 'DM Mono',monospace;color:var(--fg2);margin-top:6px">{{ tv.hz }}</div>
+</div>
+<div style="position:relative;margin:34px 24px 0;height:104px">
+<div style="position:absolute;left:157px;width:40px;top:4px;height:70px;border-radius:14px;background:var(--okbg)"></div>
+<div style="position:absolute;left:0;right:0;top:0;height:78px;display:flex;justify-content:space-between;align-items:center"><sc-for list="{{ tv.ticks }}" as="t" hint-placeholder-count="21"><div style="width:2px;border-radius:1px;height:{{ t.h }}px;background:{{ t.c }}"></div></sc-for></div>
+<sc-if value="{{ tv.hasNeedle }}"><div style="position:absolute;top:-6px;left:{{ tv.needleX }}px;width:8px;height:90px;border-radius:4px;background:{{ tv.pillBg }};box-shadow:0 0 0 3px var(--stage),0 0 22px {{ tv.pillBg }};transition:left .5s"></div></sc-if>
+<div style="position:absolute;left:0;right:0;top:86px;display:flex;justify-content:space-between;font:500 12px 'DM Mono',monospace;color:var(--fg2)"><span>♭ FLAT</span><span style="font-weight:500;color:var(--fg)">{{ tv.centsL }}</span><span>SHARP ♯</span></div>
+</div>
+<div style="display:flex;justify-content:center;margin-top:18px"><div style="height:58px;padding:0 26px 0 18px;border-radius:29px;background:{{ tv.pillBg }};color:{{ tv.pillFg }};display:flex;align-items:center;gap:10px;font:800 23px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:30px;line-height:1;font-variation-settings:'FILL' 1">{{ tv.icon }}</span>{{ tv.status }}</div></div>
+<div style="position:absolute;left:0;right:0;bottom:132px;text-align:center;font:500 14px Barlow;color:var(--fg2)">Auto-detect · tap a string to lock it</div>
+<div style="position:absolute;left:18px;right:18px;bottom:46px;display:grid;grid-template-columns:repeat(6,1fr)">
+<sc-for list="{{ tv.strings }}" as="g" hint-placeholder-count="6"><div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:52px;height:52px;border-radius:26px;display:flex;align-items:center;justify-content:center;font:800 24px Barlow;background:{{ g.bg }};color:{{ g.fg }};box-shadow:{{ g.ring }}">{{ g.n }}</div><span style="font:500 11px 'DM Mono',monospace;color:var(--fg2)">{{ g.num }}</span></div></sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.tunerPerm }}">
+<div style="position:absolute;inset:0;padding:54px 28px 0;display:flex;flex-direction:column">
+<div style="display:flex;padding-top:6px"><div onClick="{{ goHome }}" style="width:44px;height:44px;border-radius:22px;background:var(--chip);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1">close</span></div></div>
+<div style="width:128px;height:128px;border-radius:64px;background:linear-gradient(180deg,#EE6A1F,#C2440A);color:#fff;display:flex;align-items:center;justify-content:center;margin-top:90px;box-shadow:0 16px 40px rgba(194,68,10,0.35)"><span style="font-family:'Material Symbols Rounded';font-size:64px;line-height:1;font-variation-settings:'FILL' 1">mic</span></div>
+<div style="font:800 36px/1.08 Barlow;margin-top:30px;letter-spacing:-0.01em">Let the tuner hear your guitar</div>
+<div style="font:500 18px/1.45 Barlow;color:var(--fg2);margin-top:14px;text-wrap:pretty">Moodchords uses the microphone only while the tuner is open, to hear which note you're playing.</div>
+<div style="display:flex;gap:10px;align-items:flex-start;margin-top:20px;font:600 16px/1.4 Barlow"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1.1;color:var(--ok)">lock</span>Sound stays on your phone. Nothing is recorded or sent.</div>
+<div style="flex:1"></div>
+<div onClick="{{ goPerm }}" style="height:62px;border-radius:31px;background:var(--fg);color:var(--bg);display:flex;align-items:center;justify-content:center;font:800 19px Barlow">Allow microphone</div>
+<div style="height:56px;display:flex;align-items:center;justify-content:center;font:700 17px Barlow;color:var(--fg2);margin-bottom:34px">Not now</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.paste }}">
+<div style="position:absolute;inset:0;padding-top:54px;overflow:hidden">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 16px 0">
+<div onClick="{{ goHome }}" style="height:44px;padding:0 16px;border-radius:22px;background:var(--glass);box-shadow:inset 0 0 0 0.5px var(--line);display:flex;align-items:center;font:600 16px Barlow">Cancel</div>
+<div style="font:700 18px Barlow">Paste song</div>
+<div style="height:44px;padding:0 16px;border-radius:22px;background:var(--chip);display:flex;align-items:center;font:700 16px Barlow;color:var(--fg3)">Save</div>
+</div>
+<div style="display:flex;gap:8px;align-items:center;padding:14px 16px 0">
+<div style="height:44px;padding:0 14px 0 10px;border-radius:22px;background:var(--chip);display:flex;align-items:center;gap:6px;font:700 15px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:20px;line-height:1">description</span>Template</div>
+<div style="height:44px;padding:0 14px 0 10px;border-radius:22px;background:var(--chip);display:flex;align-items:center;gap:6px;font:700 15px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:20px;line-height:1">content_paste</span>Paste</div>
+<div style="flex:1"></div><span style="font:500 11px 'DM Mono',monospace;color:var(--fg2)">2 ISSUES</span>
+</div>
+<div style="margin:14px 16px 0;padding:14px 16px;border-radius:22px;background:var(--errbg);display:flex;gap:12px">
+<span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;font-variation-settings:'FILL' 1;color:var(--danger)">error</span>
+<div><div style="font:700 17px Barlow;color:var(--danger)">The song needs a title</div><div style="font:500 14px/1.45 Barlow;margin-top:3px">Add a first line like <span style="font:500 12.5px 'DM Mono',monospace;padding:2px 6px;border-radius:6px;background:var(--chip)">title: Campfire Night</span></div></div>
+</div>
+<div style="margin:12px 16px 0;border-radius:24px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line);padding:12px 0;font:400 13.5px/1.8 'DM Mono',monospace">
+<div style="display:flex;gap:10px;padding:0 14px;background:var(--errbg)"><span style="width:18px;text-align:right;color:var(--fg3)">1</span><span style="display:inline-block;width:2px;height:18px;background:var(--chord);margin-top:4px"></span></div>
+<sc-for list="{{ pasteLines }}" as="pl" hint-placeholder-count="10">
+<div style="display:flex;gap:10px;padding:0 14px;background:{{ pl.bg }}"><span style="width:18px;text-align:right;color:var(--fg3);flex:none">{{ pl.n }}</span><span style="flex:1;min-width:0;white-space:pre-wrap"><sc-for list="{{ pl.tokens }}" as="t"><span style="color:{{ t.c }};font-weight:{{ t.w }}">{{ t.t }}</span></sc-for></span></div>
+<sc-if value="{{ pl.hasErr }}"><div style="display:flex;gap:6px;padding:4px 14px 6px 42px;background:var(--errbg);font:600 13.5px/1.35 Barlow;color:var(--danger)"><span style="font-family:'Material Symbols Rounded';font-size:17px;line-height:1.1">error</span>{{ pl.err }}</div></sc-if>
+</sc-for>
+</div>
+<div style="padding:12px 24px 0;font:500 14px/1.4 Barlow;color:var(--fg2)">Put each chord in [brackets] right before the word it lands on.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.imported }}">
+<div style="position:absolute;inset:0;padding-top:54px;overflow:hidden">
+<div style="display:flex;justify-content:flex-end;padding:6px 16px 0"><div onClick="{{ goHome }}" style="height:44px;padding:0 18px;border-radius:22px;background:var(--glass);box-shadow:inset 0 0 0 0.5px var(--line);display:flex;align-items:center;font:700 16px Barlow;color:var(--chord)">Done</div></div>
+<div style="padding:26px 24px 0">
+<div style="width:76px;height:76px;border-radius:38px;background:var(--okbg);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:46px;line-height:1;color:var(--ok)">check</span></div>
+<div style="font:800 40px/1.05 Barlow;margin-top:20px;letter-spacing:-0.01em">Added 10 songs</div>
+<div style="font:500 17px/1.4 Barlow;color:var(--fg2);margin-top:8px">From 11 files in “Jam songs”. They're sorted into your moods already.</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:16px">
+<span style="height:32px;padding:0 12px;border-radius:16px;background:var(--chip);display:flex;align-items:center;font:600 14px Barlow">Wonderwall</span><span style="height:32px;padding:0 12px;border-radius:16px;background:var(--chip);display:flex;align-items:center;font:600 14px Barlow">Resham</span><span style="height:32px;padding:0 12px;border-radius:16px;background:var(--chip);display:flex;align-items:center;font:600 14px 'Noto Sans Devanagari',Barlow">साँझको गीत</span><span style="height:32px;padding:0 12px;border-radius:16px;background:var(--chip);display:flex;align-items:center;font:600 14px Barlow">Tum Hi Ho</span><span style="height:32px;padding:0 12px;border-radius:16px;background:var(--chip);display:flex;align-items:center;font:600 14px Barlow">Yeh Dosti</span><span style="height:32px;padding:0 12px;border-radius:16px;font:600 14px Barlow;display:flex;align-items:center;color:var(--fg2)">+5 more</span>
+</div>
+</div>
+<div style="padding:28px 24px 8px;font:500 12px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2)">3 THINGS TO CHECK</div>
+<div style="margin:0 16px;border-radius:26px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line),var(--shadow)">
+<div style="display:flex;gap:12px;padding:14px 14px 14px 16px;align-items:flex-start"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1.1;color:var(--chord)">schedule</span><div style="flex:1"><div style="font:700 16px Barlow">Resham</div><div style="font:500 14px/1.35 Barlow;color:var(--fg2)">No song length set; auto-scroll will assume 3:30.</div></div><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1;color:var(--fg3)">chevron_right</span></div>
+<div style="display:flex;gap:12px;padding:14px 14px 14px 16px;align-items:flex-start;border-top:0.5px solid var(--line)"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1.1;color:var(--chord)">music_note</span><div style="flex:1"><div style="font:700 16px Barlow">Timro Nyano</div><div style="font:500 14px/1.35 Barlow;color:var(--fg2)">No key set. Transpose works once you add one.</div></div><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1;color:var(--fg3)">chevron_right</span></div>
+<div style="display:flex;gap:12px;padding:14px 14px 14px 16px;align-items:flex-start;border-top:0.5px solid var(--line)"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1.1;color:var(--fg2)">block</span><div style="flex:1"><div style="font:700 16px Barlow">notes.pdf</div><div style="font:500 14px/1.35 Barlow;color:var(--fg2)">Skipped. It isn't a song file.</div></div></div>
+</div>
+<div style="position:absolute;left:20px;right:20px;bottom:40px;height:62px;border-radius:31px;background:linear-gradient(180deg,#EE6A1F,#C2440A);color:#fff;display:flex;align-items:center;justify-content:center;font:800 19px Barlow;box-shadow:0 10px 24px rgba(194,68,10,0.3)">Go to my moods</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.edit }}">
+<div style="position:absolute;inset:0;padding-top:54px;overflow:hidden">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 16px 0">
+<div onClick="{{ goSong }}" style="height:44px;padding:0 16px;border-radius:22px;background:var(--glass);box-shadow:inset 0 0 0 0.5px var(--line);display:flex;align-items:center;font:600 16px Barlow">Cancel</div>
+<div style="font:700 18px Barlow">Edit song</div>
+<div onClick="{{ goSong }}" style="height:44px;padding:0 16px;border-radius:22px;background:var(--glass);box-shadow:inset 0 0 0 0.5px var(--line);display:flex;align-items:center;font:800 16px Barlow;color:var(--chord)">Done</div>
+</div>
+<div style="margin:12px 16px 0;height:48px;border-radius:24px;background:var(--chip);padding:4px;box-sizing:border-box;display:grid;grid-template-columns:1fr 1fr">
+<div onClick="{{ goEditor }}" style="border-radius:20px;background:{{ ev.editBg }};box-shadow:{{ ev.editSh }};display:flex;align-items:center;justify-content:center;gap:6px;font:700 15px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:18px;line-height:1">code</span>Edit</div>
+<div onClick="{{ goPreview }}" style="border-radius:20px;background:{{ ev.prevBg }};box-shadow:{{ ev.prevSh }};display:flex;align-items:center;justify-content:center;gap:6px;font:700 15px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:18px;line-height:1">visibility</span>Live preview</div>
+</div>
+<div style="margin:12px 16px 0;border-radius:22px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line)">
+<div style="display:flex;align-items:center;height:50px;padding:0 16px;gap:12px"><span style="width:62px;font:500 11px 'DM Mono',monospace;letter-spacing:0.06em;color:var(--fg2)">TITLE</span><span style="font:700 17px Barlow">Campfire Night</span></div>
+<div style="display:flex;align-items:center;height:50px;padding:0 16px;gap:12px;border-top:0.5px solid var(--line)"><span style="width:62px;font:500 11px 'DM Mono',monospace;letter-spacing:0.06em;color:var(--fg2)">ARTIST</span><span style="font:600 17px Barlow">Moodchords Sample</span></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 16px 0">
+<div style="height:58px;border-radius:18px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line);padding:9px 14px;box-sizing:border-box"><div style="font:500 10.5px 'DM Mono',monospace;color:var(--fg2)">KEY</div><div style="font:800 19px/1.2 Barlow">G</div></div>
+<div style="height:58px;border-radius:18px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line);padding:9px 14px;box-sizing:border-box"><div style="font:500 10.5px 'DM Mono',monospace;color:var(--fg2)">CAPO</div><div style="font:800 19px/1.2 Barlow">None</div></div>
+<div style="height:58px;border-radius:18px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line);padding:9px 14px;box-sizing:border-box"><div style="font:500 10.5px 'DM Mono',monospace;color:var(--fg2)">LENGTH</div><div style="font:800 19px/1.2 Barlow">2:45</div></div>
+</div>
+<div style="padding:14px 20px 0;font:500 11px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2)">MOODS</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;padding:8px 16px 0"><sc-for list="{{ ev.moods }}" as="c" hint-placeholder-count="5"><div style="height:40px;padding:0 13px 0 10px;border-radius:20px;background:{{ c.bg }};color:{{ c.fg }};display:flex;align-items:center;gap:5px;font:700 14px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:18px;line-height:1">{{ c.icon }}</span>{{ c.name }}</div></sc-for></div>
+<div style="padding:14px 20px 0;font:500 11px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2)">CROWD</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;padding:8px 16px 0"><sc-for list="{{ ev.crowds }}" as="c" hint-placeholder-count="4"><div style="height:40px;padding:0 13px 0 10px;border-radius:20px;background:{{ c.bg }};color:{{ c.fg }};display:flex;align-items:center;gap:5px;font:700 14px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:18px;line-height:1">{{ c.icon }}</span>{{ c.name }}</div></sc-for></div>
+<div style="margin:14px 16px 0;border-radius:24px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line);padding:12px 0;min-height:340px;box-sizing:border-box">
+<sc-if value="{{ ev.preview }}"><div style="padding:2px 18px;display:flex;flex-direction:column;gap:6px">
+<sc-for list="{{ sv.preview }}" as="l"><sc-if value="{{ l.section }}"><div style="font:500 11px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2);margin-top:4px">{{ l.label }}</div></sc-if><sc-if value="{{ l.lyric }}"><div style="display:flex;flex-wrap:wrap;column-gap:0.26em;font:500 17px/1.45 Barlow,'Noto Sans Devanagari',sans-serif"><sc-for list="{{ l.words }}" as="w"><span style="position:relative;display:inline-block;padding-top:17px"><span style="position:absolute;left:0;top:0;font:800 14px/1 Barlow;color:var(--chord);white-space:nowrap">{{ w.c }}</span>{{ w.w }}</span></sc-for></div></sc-if></sc-for>
+</div></sc-if>
+<sc-if value="{{ ev.lines }}"><div style="font:400 13.5px/1.85 'DM Mono',monospace;display:{{ ev.editDisplay }}">
+<sc-for list="{{ ev.lines }}" as="pl"><div style="display:flex;gap:10px;padding:0 14px"><span style="width:18px;text-align:right;color:var(--fg3);flex:none">{{ pl.n }}</span><span style="flex:1;min-width:0;white-space:pre-wrap"><sc-for list="{{ pl.tokens }}" as="t"><span style="color:{{ t.c }};font-weight:{{ t.w }}">{{ t.t }}</span></sc-for></span></div></sc-for>
+</div></sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.favs }}">
+<div style="position:absolute;inset:0;padding-top:54px;overflow:hidden">
+<div style="display:flex;justify-content:flex-end;padding:6px 20px 0"><div style="width:44px;height:44px;border-radius:22px;background:var(--glass);box-shadow:inset 0 0 0 0.5px var(--line);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1">search</span></div></div>
+<div style="padding:4px 22px 0"><div style="font:800 42px/1 Barlow;letter-spacing:-0.02em">Favourites</div><div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2);margin-top:10px">6 SONGS</div></div>
+<div style="margin:16px 16px 0;border-radius:26px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line),var(--shadow);overflow:hidden">
+<sc-for list="{{ favRows }}" as="r" hint-placeholder-count="6">
+<div onClick="{{ r.onTap }}" style="display:flex;gap:12px;padding:12px 14px;border-top:{{ r.border }};align-items:center">
+<div style="width:44px;height:44px;border-radius:14px;background:{{ r.mood.color }};color:#1E1915;display:flex;align-items:center;justify-content:center;flex:none"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1;font-variation-settings:'FILL' 1">{{ r.mood.icon }}</span></div>
+<div style="flex:1;min-width:0"><div style="font:700 17px/1.3 Barlow,'Noto Sans Devanagari',sans-serif">{{ r.title }}</div><div style="font:500 14px/1.3 Barlow;color:var(--fg2)">{{ r.artist }}</div><div style="font:500 11px 'DM Mono',monospace;margin-top:4px">{{ r.meta }}</div></div>
+<span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;font-variation-settings:'FILL' 1;color:var(--chord)">star</span>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.setlist }}">
+<div style="position:absolute;inset:0;padding-top:54px;overflow:hidden">
+<div style="display:flex;justify-content:space-between;padding:6px 20px 0">
+<div onClick="{{ goHome }}" style="width:44px;height:44px;border-radius:22px;background:var(--glass);box-shadow:inset 0 0 0 0.5px var(--line);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:28px;line-height:1">chevron_left</span></div>
+<div style="width:44px;height:44px;border-radius:22px;background:var(--glass);box-shadow:inset 0 0 0 0.5px var(--line);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1">more_horiz</span></div>
+</div>
+<div style="padding:10px 22px 0">
+<div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2)">SETLIST</div>
+<div style="display:flex;align-items:center;gap:8px;margin-top:6px"><div style="font:800 36px/1.05 Barlow;letter-spacing:-0.01em">Friday campfire</div><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1;color:var(--fg2)">edit</span></div>
+<div style="font:600 16px Barlow;color:var(--fg2);margin-top:6px">5 songs · 17:56 total</div>
+</div>
+<div style="margin:18px 16px 0;border-radius:26px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line),var(--shadow)">
+<sc-for list="{{ setRows }}" as="r" hint-placeholder-count="5">
+<div style="position:relative;z-index:{{ r.z }};display:flex;gap:12px;padding:12px 10px 12px 14px;align-items:center;border-top:{{ r.border }};background:{{ r.bg }};box-shadow:{{ r.sh }};transform:{{ r.tf }};border-radius:{{ r.radius }}">
+<span style="width:16px;font:500 13px 'DM Mono',monospace;color:var(--fg2)">{{ r.n }}</span>
+<div style="width:8px;height:36px;border-radius:4px;background:{{ r.mood.color }};flex:none"></div>
+<div style="flex:1;min-width:0"><div style="font:700 17px/1.25 Barlow">{{ r.title }}</div><div style="font:500 13.5px/1.3 Barlow;color:var(--fg2)">{{ r.artist }} · <span style="font:500 11px 'DM Mono',monospace;color:var(--fg)">{{ r.meta }}</span></div></div>
+<div style="text-align:right"><div style="font:500 13px 'DM Mono',monospace">{{ r.dur }}</div><div style="font:500 9px 'DM Mono',monospace;color:var(--fg2)">{{ r.assumed }}</div></div>
+<div style="width:40px;height:44px;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;color:var(--fg2)">drag_indicator</span></div>
+</div>
+</sc-for>
+<div style="display:flex;gap:10px;align-items:center;height:54px;padding:0 16px;border-top:0.5px solid var(--line);font:700 16px Barlow;color:var(--chord)"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">add_circle</span>Add songs</div>
+</div>
+<div onClick="{{ goJam }}" style="position:absolute;left:20px;right:20px;bottom:40px;height:70px;border-radius:35px;background:linear-gradient(180deg,#EE6A1F,#C2440A);color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 12px 30px rgba(194,68,10,0.4),inset 0 1px 0 rgba(255,255,255,0.3)"><span style="font-family:'Material Symbols Rounded';font-size:32px;line-height:1;font-variation-settings:'FILL' 1">play_arrow</span><span style="font:800 22px Barlow">Start jam</span><span style="font:600 14px 'DM Mono',monospace">17:56</span></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.moods }}">
+<div style="position:absolute;inset:0;padding-top:54px;overflow:hidden">
+<div style="display:flex;justify-content:space-between;padding:6px 20px 0">
+<div onClick="{{ goHome }}" style="width:44px;height:44px;border-radius:22px;background:var(--glass);box-shadow:inset 0 0 0 0.5px var(--line);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:28px;line-height:1">chevron_left</span></div>
+<div style="height:44px;padding:0 18px;border-radius:22px;background:var(--glass);box-shadow:inset 0 0 0 0.5px var(--line);display:flex;align-items:center;font:800 16px Barlow;color:var(--chord)">Done</div>
+</div>
+<div style="padding:4px 22px 0"><div style="font:800 42px/1 Barlow;letter-spacing:-0.02em">Moods</div><div style="font:500 15px/1.35 Barlow;color:var(--fg2);margin-top:8px">Drag to reorder. Default moods can be renamed but not deleted.</div></div>
+<div style="margin:14px 16px 0;border-radius:26px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line),var(--shadow);overflow:hidden">
+<sc-for list="{{ moodRows }}" as="m" hint-placeholder-count="10">
+<div style="display:flex;align-items:center;gap:12px;height:54px;padding:0 6px 0 12px;border-top:{{ m.border }}">
+<sc-if value="{{ m.isCustom }}"><div style="width:24px;height:24px;border-radius:12px;background:var(--danger);color:var(--bg);display:flex;align-items:center;justify-content:center;flex:none"><span style="font-family:'Material Symbols Rounded';font-size:18px;line-height:1">remove</span></div></sc-if>
+<div style="width:36px;height:36px;border-radius:18px;background:{{ m.color }};color:#1E1915;display:flex;align-items:center;justify-content:center;flex:none"><span style="font-family:'Material Symbols Rounded';font-size:19px;line-height:1;font-variation-settings:'FILL' 1">{{ m.icon }}</span></div>
+<div style="flex:1;min-width:0;font:700 17px Barlow">{{ m.name }}</div>
+<span style="font:500 11px 'DM Mono',monospace;color:var(--fg2)">{{ m.countLabel }}</span>
+<div style="width:40px;height:44px;display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;color:var(--fg2)">drag_handle</span></div>
+</div>
+</sc-for>
+<div onClick="{{ goNewMood }}" style="display:flex;gap:10px;align-items:center;height:54px;padding:0 16px;border-top:0.5px solid var(--line);font:700 16px Barlow;color:var(--chord)"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">add_circle</span>New mood</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.moodNew }}">
+<div style="position:absolute;inset:0;background:rgba(10,6,3,0.4);z-index:50"></div>
+<div style="position:absolute;left:8px;right:8px;top:70px;bottom:8px;border-radius:46px;background:var(--sheet);z-index:51;padding:10px 20px 0">
+<div style="width:38px;height:5px;border-radius:3px;background:var(--fg3);margin:0 auto 12px"></div>
+<div style="display:flex;justify-content:space-between;align-items:center"><div onClick="{{ goMoods }}" style="height:44px;padding:0 16px;border-radius:22px;background:var(--chip);display:flex;align-items:center;font:600 16px Barlow">Cancel</div><div style="font:700 18px Barlow">New mood</div><div onClick="{{ goMoods }}" style="height:44px;padding:0 16px;border-radius:22px;background:var(--fg);color:var(--sheet);display:flex;align-items:center;font:800 16px Barlow">Add</div></div>
+<div style="display:flex;justify-content:center;margin-top:20px"><div style="position:relative;width:200px;height:118px;border-radius:26px;overflow:hidden;background:{{ custom.color }};color:#1E1915;padding:14px 16px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between"><span style="font-family:'Material Symbols Rounded';font-size:26px;line-height:1;font-variation-settings:'FILL' 1">bedtime</span><span style="position:absolute;right:-16px;bottom:-24px;font-family:'Material Symbols Rounded';font-size:116px;line-height:1;opacity:0.13;font-variation-settings:'FILL' 1">bedtime</span><div><div style="font:700 21px/1.05 Barlow">Hostel nights</div><div style="font:500 12px 'DM Mono',monospace;margin-top:5px;opacity:0.78">NO SONGS YET</div></div></div></div>
+<div style="margin-top:20px;height:52px;border-radius:18px;background:var(--card2);box-shadow:inset 0 0 0 0.5px var(--line);display:flex;align-items:center;padding:0 16px;font:700 18px Barlow">Hostel nights<span style="display:inline-block;width:2px;height:22px;background:var(--chord);margin-left:2px"></span></div>
+<div style="padding:18px 4px 10px;font:500 11px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2)">COLOUR</div>
+<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;justify-items:center"><sc-for list="{{ swatches }}" as="w" hint-placeholder-count="12"><div style="width:44px;height:44px;border-radius:22px;background:{{ w.c }};box-shadow:{{ w.ring }};display:flex;align-items:center;justify-content:center;color:#1E1915"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">{{ w.check }}</span></div></sc-for></div>
+<div style="padding:18px 4px 10px;font:500 11px 'DM Mono',monospace;letter-spacing:0.08em;color:var(--fg2)">ICON</div>
+<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px"><sc-for list="{{ icons }}" as="ic" hint-placeholder-count="12"><div style="height:50px;border-radius:16px;background:{{ ic.bg }};color:{{ ic.fg }};display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1">{{ ic.n }}</span></div></sc-for></div>
+</div>
+</sc-if>
+
+<div style="position:absolute;bottom:8px;left:129px;width:144px;height:5px;border-radius:3px;background:var(--fg);opacity:0.85;z-index:70"></div>
+</div>
+</sc-if>
+<sc-if value="{{ isGuide }}"><div style="width:1240px;box-sizing:border-box;padding:56px;border-radius:40px;background:var(--bg);color:var(--fg);display:flex;flex-direction:column;gap:52px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font:800 48px/1 Barlow;letter-spacing:-0.02em">Style guide</div><div style="font:500 13px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2)">{{ modeLabel }}</div></div>
+
+<div><div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2);margin-bottom:16px">MOOD PALETTE · oklch(0.80 0.11 h) · ink #1E1915 on every tile (AA in both modes)</div>
+<div style="display:grid;grid-template-columns:repeat(9,1fr);gap:12px">
+<sc-for list="{{ guide.moods }}" as="m" hint-placeholder-count="9"><div><div style="position:relative;height:110px;border-radius:24px;overflow:hidden;background:{{ m.color }};color:#1E1915;padding:12px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between"><span style="font-family:'Material Symbols Rounded';font-size:26px;line-height:1;font-variation-settings:'FILL' 1">{{ m.icon }}</span><div style="font:700 16px/1.05 Barlow">{{ m.name }}</div></div><div style="font:500 10px/1.4 'DM Mono',monospace;color:var(--fg2);margin-top:8px">{{ m.val }}</div><div style="font:500 10px/1.4 'DM Mono',monospace;color:var(--fg2)">{{ m.icon }}</div></div></sc-for>
+</div></div>
+
+<div style="display:grid;grid-template-columns:1.1fr 1fr;gap:56px">
+<div><div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2);margin-bottom:16px">TYPE SCALE · BARLOW + DM MONO</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:baseline;gap:20px"><span style="width:150px;font:500 11px 'DM Mono',monospace;color:var(--fg2)">LARGE TITLE 42/800</span><span style="font:800 42px/1 Barlow;letter-spacing:-0.02em">Moodchords</span></div>
+<div style="display:flex;align-items:baseline;gap:20px"><span style="width:150px;font:500 11px 'DM Mono',monospace;color:var(--fg2)">TITLE 34/800</span><span style="font:800 34px/1.1 Barlow">Campfire Night</span></div>
+<div style="display:flex;align-items:baseline;gap:20px"><span style="width:150px;font:500 11px 'DM Mono',monospace;color:var(--fg2)">HEADLINE 20/700</span><span style="font:700 20px Barlow">Who's listening?</span></div>
+<div style="display:flex;align-items:baseline;gap:20px"><span style="width:150px;font:500 11px 'DM Mono',monospace;color:var(--fg2)">BODY 17/500</span><span style="font:500 17px Barlow;color:var(--fg2)">One tap. You can change it on the song list.</span></div>
+<div style="display:flex;align-items:baseline;gap:20px"><span style="width:150px;font:500 11px 'DM Mono',monospace;color:var(--fg2)">LABEL MONO 12</span><span style="font:500 12px 'DM Mono',monospace;letter-spacing:0.1em">CUE CARD · KEY G · CAPO 2</span></div>
+<div style="display:flex;align-items:baseline;gap:20px"><span style="width:150px;font:500 11px 'DM Mono',monospace;color:var(--fg2)">DISPLAY CONDENSED</span><span style="font:800 96px/0.85 'Barlow Condensed';color:var(--chord)">A 3</span></div>
+</div></div>
+<div><div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2);margin-bottom:16px">DEVANAGARI · NOTO SANS DEVANAGARI (iOS: KOHINOOR DEVANAGARI)</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="font:800 42px/1.35 'Noto Sans Devanagari',Barlow">साँझको गीत</div>
+<div style="font:700 20px/1.5 'Noto Sans Devanagari',Barlow">तिम्रो याद मनमा बोक्छु</div>
+<div style="font:500 17px/1.6 'Noto Sans Devanagari',Barlow;color:var(--fg2)">बिस्तारै बिस्तारै गीत यो गाउँछु म</div>
+<div style="font:500 15px/1.5 Barlow;color:var(--fg2);max-width:440px">Same sizes as Latin, one weight step lighter in body. Line-height 1.45–1.6 so matras and the shirorekha never clip. Mixed romanized lines (Saanjh parepachhi) stay in Barlow.</div>
+</div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1.2fr 1fr;gap:56px">
+<div><div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2);margin-bottom:16px">CHORD + LYRIC · PLAY MODE 30/600 LYRIC · 23/800 CHORD</div>
+<div style="border-radius:30px;background:var(--stage);padding:22px 26px;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{ guide.lines }}" as="l" hint-placeholder-count="3"><div><div style="font:500 10px 'DM Mono',monospace;color:var(--fg2);margin-bottom:2px">{{ l.label }}</div><div style="display:flex;flex-wrap:wrap;column-gap:0.26em;padding:10px 14px 12px;margin:0 -14px;border-radius:24px;background:{{ l.bg }};color:{{ l.color }};font:600 30px/1.4 Barlow"><sc-for list="{{ l.words }}" as="w"><span style="position:relative;display:inline-block;padding-top:27px"><span style="position:absolute;left:0;top:0;font:800 23px/1 Barlow;color:{{ l.chord }};white-space:nowrap">{{ w.c }}</span>{{ w.w }}</span></sc-for></div></div></sc-for>
+<div><div style="font:500 10px 'DM Mono',monospace;color:var(--fg2);margin-bottom:2px">LONG CHORDS HANG OVER, NEVER PUSH WORDS APART</div><div style="display:flex;flex-wrap:wrap;column-gap:0.26em;font:600 30px/1.4 Barlow;color:var(--fg2)"><sc-for list="{{ guide.hang }}" as="w"><span style="position:relative;display:inline-block;padding-top:27px"><span style="position:absolute;left:0;top:0;font:800 23px/1 Barlow;color:var(--chord);white-space:nowrap">{{ w.c }}</span>{{ w.w }}</span></sc-for></div></div>
+<div><div style="font:500 10px 'DM Mono',monospace;color:var(--fg2);margin-bottom:2px">DEVANAGARI · LINE-HEIGHT 1.55</div><div style="display:flex;flex-wrap:wrap;column-gap:0.26em;padding:8px 14px 10px;margin:0 -14px;border-radius:24px;background:var(--chip);font:600 30px/1.55 'Noto Sans Devanagari',Barlow"><sc-for list="{{ guide.deva }}" as="w"><span style="position:relative;display:inline-block;padding-top:27px"><span style="position:absolute;left:0;top:0;font:800 23px/1 Barlow;color:var(--chord);white-space:nowrap">{{ w.c }}</span>{{ w.w }}</span></sc-for></div></div>
+</div></div>
+<div><div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2);margin-bottom:16px">CHORD DIAGRAM · ○ OPEN · × MUTED · ROOT IN CHORD COLOUR</div>
+<div style="display:flex;gap:30px;padding:24px;border-radius:30px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line)">
+<sc-for list="{{ guide.diagrams }}" as="d" hint-placeholder-count="4">
+<div style="flex:none;display:flex;flex-direction:column;align-items:center;gap:3px">
+<div style="font:800 18px/1 Barlow;color:var(--chord)">{{ d.name }}</div>
+<div style="position:relative;width:62px;height:14px"><sc-for list="{{ d.marks }}" as="k"><span style="position:absolute;top:0;left:{{ k.x }}px;width:12px;text-align:center;font:600 10px/14px 'DM Mono',monospace;color:{{ k.c }}">{{ k.t }}</span></sc-for></div>
+<div style="position:relative;width:61.5px;height:73.5px;border-radius:16px 16px 5px 5px;background:repeating-linear-gradient(90deg,var(--fg3) 0 1.5px,transparent 1.5px 12px),repeating-linear-gradient(180deg,var(--fg3) 0 1.5px,transparent 1.5px 18px);box-shadow:inset 0 0 0 1.5px var(--fg3)">
+<sc-if value="{{ d.barre }}"><div style="position:absolute;left:-5px;top:3px;width:72px;height:13px;border-radius:7px;background:var(--fg)"></div></sc-if>
+<sc-for list="{{ d.dots }}" as="o"><div style="position:absolute;left:{{ o.x }}px;top:{{ o.y }}px;width:13px;height:13px;border-radius:7px;background:{{ o.bg }}"></div></sc-for>
+</div></div>
+</sc-for>
+</div>
+<div style="font:500 14px/1.5 Barlow;color:var(--fg2);margin-top:12px">Arched top echoes the reference. Barre chords draw a single bar. Shapes are capo-relative (Wonderwall shows Em7, not F#m7).</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1.2fr 1fr;gap:56px">
+<div><div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2);margin-bottom:16px">BUTTONS · CHIPS · CARDS</div>
+<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+<div style="height:70px;padding:0 30px;border-radius:35px;background:linear-gradient(180deg,#EE6A1F,#C2440A);color:#fff;display:flex;align-items:center;gap:10px;font:800 23px Barlow;box-shadow:0 12px 30px rgba(194,68,10,0.35)">Play<span style="font-family:'Material Symbols Rounded';font-size:32px;line-height:1;font-variation-settings:'FILL' 1">play_arrow</span></div>
+<div style="height:56px;padding:0 24px;border-radius:28px;background:var(--fg);color:var(--bg);display:flex;align-items:center;font:700 17px Barlow">Secondary</div>
+<div style="width:44px;height:44px;border-radius:22px;background:var(--glass);box-shadow:inset 0 0 0 0.5px var(--line),0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1">search</span></div>
+<div style="height:44px;padding:0 18px;border-radius:22px;background:var(--glass);box-shadow:inset 0 0 0 0.5px var(--line),0 2px 10px rgba(0,0,0,0.08);display:flex;align-items:center;font:700 16px Barlow">Edit</div>
+<div style="height:48px;width:240px;border-radius:24px;background:var(--chip);padding:4px;box-sizing:border-box;display:grid;grid-template-columns:1fr 1fr"><div style="border-radius:20px;background:var(--card2);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;font:700 15px Barlow">Edit</div><div style="display:flex;align-items:center;justify-content:center;font:700 15px Barlow">Preview</div></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:18px">
+<div style="display:flex;align-items:center;gap:5px;height:32px;padding:0 12px 0 9px;border-radius:16px;background:oklch(0.8 0.11 50);color:#1E1915;font:700 14px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:17px;line-height:1;font-variation-settings:'FILL' 1">local_fire_department</span>Campfire</div>
+<span style="height:32px;padding:0 12px;border-radius:16px;background:var(--chip);display:flex;align-items:center;font:600 14px Barlow">Friends</span>
+<div style="height:44px;padding:0 14px 0 10px;border-radius:22px;background:var(--fg);color:var(--bg);display:flex;align-items:center;gap:3px;font:700 15px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:18px;line-height:1">check</span>Mixed</div>
+<span style="height:30px;min-width:30px;padding:0 9px;border-radius:15px;background:var(--chip);font:800 16px Barlow;color:var(--chord);display:flex;align-items:center">Dsus4</span>
+<div style="display:flex;align-items:center;gap:6px;font:600 14px Barlow"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;font-variation-settings:'FILL' 1;color:var(--ok)">check_circle</span>Ready</div>
+<div style="display:flex;align-items:center;gap:6px;font:600 14px Barlow;color:var(--fg2)"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;color:var(--fg3)">radio_button_unchecked</span>Still learning</div>
+<div style="position:relative;width:46px;height:28px;border-radius:14px;background:var(--ok)"><div style="position:absolute;top:3px;left:20px;width:22px;height:22px;border-radius:11px;background:#fff"></div></div>
+</div>
+<div style="margin-top:18px;border-radius:30px;background:var(--card);box-shadow:inset 0 0 0 0.5px var(--line),var(--shadow);padding:18px 20px;max-width:420px"><div style="font:500 11px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2)">CARD · RADIUS 30 · GLASS FILL · 0.5PT HAIRLINE</div><div style="font:700 18px Barlow;margin-top:8px">Cards hold one idea each.</div><div style="font:500 14px Barlow;color:var(--fg2);margin-top:4px">Tiles 26 · sheets 46 (inset 8pt) · pills full-round · 44pt minimum targets.</div></div>
+</div>
+<div><div style="font:500 12px 'DM Mono',monospace;letter-spacing:0.1em;color:var(--fg2);margin-bottom:16px">TUNER METER · NEEDLE + LABEL + ICON (NEVER COLOUR ALONE)</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{ guide.meters }}" as="g" hint-placeholder-count="3"><div style="border-radius:26px;background:var(--stage);padding:16px 20px;display:flex;align-items:center;gap:18px">
+<div style="position:relative;width:300px;height:52px;flex:none"><div style="position:absolute;left:135px;width:30px;top:2px;height:44px;border-radius:10px;background:{{ g.zone }}"></div><div style="position:absolute;left:0;right:0;top:0;height:48px;display:flex;justify-content:space-between;align-items:center"><sc-for list="{{ guide.gticks }}" as="t"><div style="width:2px;height:{{ t.h }}px;border-radius:1px;background:var(--fg3)"></div></sc-for></div><div style="position:absolute;top:-4px;left:{{ g.x }}px;width:8px;height:56px;border-radius:4px;background:{{ g.color }};box-shadow:0 0 0 3px var(--stage)"></div></div>
+<div><div style="display:flex;align-items:center;gap:6px;font:800 19px Barlow;color:{{ g.color }}"><span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;font-variation-settings:'FILL' 1">{{ g.icon }}</span>{{ g.label }}</div><div style="font:500 12px 'DM Mono',monospace;color:var(--fg2);margin-top:3px">{{ g.cents }}</div></div>
+</div></sc-for>
+</div></div>
+</div>
+</div></sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:430,&quot;height&quot;:902},&quot;screen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;crowd&quot;,&quot;list&quot;,&quot;song&quot;,&quot;play&quot;,&quot;tuner&quot;,&quot;add&quot;,&quot;edit&quot;,&quot;favs&quot;,&quot;setlist&quot;,&quot;moods&quot;,&quot;guide&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;state&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;song&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;campfire&quot;,&quot;saanjh&quot;,&quot;wonderwall&quot;],&quot;default&quot;:&quot;campfire&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;mood&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;campfire&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;crowd&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;friends&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;interactive&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const M=(h,l,c)=>'oklch('+(l||0.8)+' '+(c||0.11)+' '+h+')';
+const MOODS=[
+{id:'romantic',name:'Romantic',icon:'favorite',h:10},
+{id:'dance',name:'Dance',icon:'nightlife',h:290},
+{id:'jolly',name:'Jolly',icon:'sentiment_very_satisfied',h:95},
+{id:'campfire',name:'Campfire',icon:'local_fire_department',h:50},
+{id:'sad',name:'Sad',icon:'rainy',h:245},
+{id:'devotional',name:'Devotional',icon:'temple_hindu',h:80},
+{id:'nostalgic',name:'Nostalgic',icon:'radio',h:200},
+{id:'party',name:'Party',icon:'celebration',h:330},
+{id:'festival',name:'Festival',sub:'Dashain · Tihar',icon:'festival',h:150}];
+const CUSTOM={id:'hostel',name:'Hostel nights',icon:'bedtime',h:270,custom:true};
+const CROWDS=[{id:'elders',name:'Elders',icon:'elderly',sub:'Parents, relatives'},{id:'friends',name:'Friends',icon:'group',sub:'Your own crowd'},{id:'mixed',name:'Mixed',icon:'diversity_3',sub:'Family gathering'},{id:'kids',name:'Kids',icon:'child_care',sub:'Simple sing-alongs'}];
+const S=(id,title,artist,key,capo,moods,crowds,ready,fav,dur,start,first)=>({id,title,artist,key,capo,moods,crowds,ready,fav,dur,start,first});
+const SONGS=[
+S('wonderwall','Wonderwall','Oasis','F#m',2,['campfire'],['friends','mixed'],true,true,'4:18','Em7 · G · Dsus4 · A7sus4'),
+S('perfect','Perfect','Ed Sheeran','Ab',1,['romantic'],['friends','mixed'],true,true,'4:23','G · Em · C · D'),
+S('country','Take Me Home, Country Roads','John Denver','A',2,['campfire'],['elders','mixed','kids'],true,false,'3:13','G · Em · D · C'),
+S('birds','Three Little Birds','Bob Marley','A',0,['jolly'],['elders','mixed','kids'],true,false,'3:00','A · D · E'),
+S('parelima','Parelima','1974 AD','E',0,['romantic'],['friends','mixed'],true,false,'4:55'),
+S('resham','Resham','Nepathya',null,0,['campfire'],['elders','friends','mixed'],false,false,null),
+S('nyano','Timro Nyano','The Uglyz',null,null,['romantic'],['friends','mixed'],false,false,null),
+S('phool','Phool Ko Aankha Ma','Ani Choying Drolma','Db',null,['devotional'],['elders','mixed'],true,false,null),
+S('samjhine','Yo Samjhine Mann Chha','Narayan Gopal',null,3,['nostalgic'],['elders'],true,true,null),
+S('tumhiho','Tum Hi Ho','Arijit Singh · Aashiqui 2','Fm',1,['romantic'],['friends','mixed'],true,true,'4:22'),
+S('kesariya','Kesariya','Arijit Singh · Brahmāstra','C',null,['romantic'],['friends','mixed'],false,false,'4:28'),
+S('dosti','Yeh Dosti','Kishore Kumar & Manna Dey · Sholay',null,null,['campfire'],['elders','mixed','kids'],true,false,null),
+S('saanjh','साँझको गीत','Moodchords Sample','Am',0,['romantic','nostalgic'],['friends','mixed'],true,true,'3:10',null,'साँझ परेपछि पहाड हेर्छु'),
+S('campfire','Campfire Night','Moodchords Sample','G',0,['campfire'],['friends','mixed'],true,true,'2:45',null,'Sparks are rising up into the sky')];
+const SHEETS={
+campfire:{strum:'D-DU-UDU',strumText:'D DU UDU',intro:['G','C','D'],introX:'×2',text:"VERSE 1\n[G]Sparks are rising [C]up into the [G]sky\n[Em]Friends around the [C]fire and the [D]night rolls by\nCHORUS\n[C]Sing it loud, [G]sing it slow\n[D]Every song we [G]used to know\nVERSE 2\n[G]Someone's got a [C]story, someone's [G]got a tune\n[Em]Strumming till the [C]morning chases [D]off the moon"},
+saanjh:{strum:'D-D-DUDU',strumText:'D D DUDU',intro:['Am','F','C','G'],introX:'',text:"VERSE\n[Am]साँझ परेपछि [F]पहाड हेर्छु\n[C]तिम्रो याद [G]मनमा बोक्छु\n[Am]Saanjh parepachhi [F]pahad herchhu\nCHORUS\n[F]बिस्तारै [G]बिस्तारै\n[Am]गीत यो [G]गाउँछु [Am]म"},
+wonderwall:{strum:'D-DU-UDU',strumText:'D DU UDU',intro:['Em7','G','Dsus4','A7sus4'],introX:'×2',text:"VERSE 1\n[Em7]Sparks are rising [G]up into the [Dsus4]sky\n[A7sus4]Friends around the [Cadd9]fire and the [Dsus4]night rolls by\nCHORUS\n[Cadd9]Sing it loud, [Em7]sing it slow\n[G]Every song we [Em7]used to know\nVERSE 2\n[Em7]Someone's got a [G]story, someone's [Dsus4]got a tune\n[A7sus4]Strumming till the [Cadd9]morning chases [Dsus4]off the moon"}};
+const SHAPES={G:[3,2,0,0,0,3],C:[-1,3,2,0,1,0],D:[-1,-1,0,2,3,2],Em:[0,2,2,0,0,0],Am:[-1,0,2,2,1,0],F:[1,3,3,2,1,1],Em7:[0,2,2,0,3,3],Dsus4:[-1,-1,0,2,3,3],A7sus4:[-1,0,2,0,3,3],Cadd9:[-1,3,2,0,3,3]};
+const MODES={
+light:{'--bg':'#EFE9E0','--stage':'#F7F2EA','--sheet':'#FAF6F0','--fg':'#1C1713','--fg2':'#5C534A','--fg3':'#A99F94','--card':'rgba(255,255,255,0.6)','--card2':'#FFFFFF','--line':'rgba(28,23,19,0.10)','--chip':'rgba(28,23,19,0.065)','--chord':'#B4430A','--glass':'rgba(255,255,255,0.62)','--ok':'#1C7443','--okbg':'oklch(0.9 0.08 150)','--danger':'#B42318','--errbg':'oklch(0.94 0.035 25)','--scrim':'rgba(247,242,234,0.76)','--ga':'45%','--shadow':'0 1px 2px rgba(60,40,20,0.05), 0 10px 30px rgba(60,40,20,0.07)'},
+dark:{'--bg':'#15110E','--stage':'#0C0907','--sheet':'#241D18','--fg':'#F7F0E8','--fg2':'#B9AEA3','--fg3':'#62584F','--card':'rgba(255,255,255,0.055)','--card2':'rgba(255,255,255,0.08)','--line':'rgba(255,255,255,0.09)','--chip':'rgba(255,255,255,0.085)','--chord':'#FFA552','--glass':'rgba(48,39,32,0.62)','--ok':'#6EE29C','--okbg':'rgba(90,210,130,0.17)','--danger':'#FF8B7B','--errbg':'rgba(255,100,80,0.13)','--scrim':'rgba(12,9,7,0.72)','--ga':'22%','--shadow':'0 1px 2px rgba(0,0,0,0.3), 0 10px 30px rgba(0,0,0,0.25)'}};
+const BEATS=['1','&','2','&','3','&','4','&'];
+const TUNE={
+listening:{note:'–',string:'Listening…',hz:'Pluck any open string',cents:null,status:'Pluck a string',icon:'hearing',pillBg:'var(--chip)',pillFg:'var(--fg)',noteColor:'var(--fg3)',active:-1},
+flat:{note:'A',string:'5th string · A',hz:'106.4 Hz · target 110.0',cents:-18,status:'Tune up',icon:'arrow_upward',pillBg:'var(--chord)',pillFg:'var(--stage)',noteColor:'var(--fg)',active:1},
+sharp:{note:'G',string:'3rd string · G',hz:'197.4 Hz · target 196.0',cents:12,status:'Tune down',icon:'arrow_downward',pillBg:'var(--chord)',pillFg:'var(--stage)',noteColor:'var(--fg)',active:3},
+intune:{note:'A',string:'5th string · A',hz:'110.0 Hz',cents:0,status:'In tune',icon:'check_circle',pillBg:'var(--ok)',pillFg:'var(--stage)',noteColor:'var(--ok)',active:1}};
+const TSEQ=[['listening'],['flat',-34],['flat',-21],['flat',-9],['intune',1],['intune',0],['sharp',14],['sharp',6]];
+function parse(text){return text.split('\n').map(raw=>{raw=raw.trim();if(raw.indexOf('[')<0)return{section:true,label:raw};const words=[];const parts=raw.split(/\[([^\]]+)\]/);let pend='';parts.forEach((pt,i)=>{if(i%2===1){pend=pt;return;}const ws=pt.split(' ').filter(Boolean);if(!ws.length&&pend){words.push({c:pend,w:'\u00a0'});pend='';}ws.forEach((w,j)=>{words.push({c:j===0?pend:'',w});if(j===0)pend='';});});return{section:false,words,plain:raw.replace(/\[[^\]]+\]/g,'')};});}
+function diag(name){const s=SHAPES[name]||[-1,-1,-1,-1,-1,-1];let root=s.findIndex(f=>f>=0);const dots=[],marks=[];s.forEach((f,i)=>{if(f>0)dots.push({x:i*12-5.75,y:(f-0.5)*18+0.75-6.5,bg:i===root?'var(--chord)':'var(--fg)'});else marks.push({x:i*12-5.25,t:f===0?'○':'×',c:f===0&&i===root?'var(--chord)':'var(--fg2)'});});return{name,dots,marks,barre:name==='F'};}
+function meta(s){return[s.key?s.key:'KEY ?',s.capo>0?'CAPO '+s.capo:s.capo===0?'NO CAPO':null,s.dur].filter(Boolean).join(' · ');}
+function toks(line){if(/^\w+:/.test(line)&&line.indexOf('[')<0){const k=line.indexOf(':')+1;return[{t:line.slice(0,k)+' ',c:'var(--fg2)',w:500},{t:line.slice(k).trim(),c:'var(--fg)',w:500}];}if(!line)return[{t:' ',c:'var(--fg)',w:400}];if(line.indexOf('[')<0)return[{t:line,c:'var(--fg2)',w:500}];return line.split(/(\[[^\]]+\])/).filter(Boolean).map(t=>t[0]==='['?{t,c:'var(--chord)',w:700}:{t,c:'var(--fg)',w:400});}
+
+class Component extends DCLogic {
+state={};
+componentDidMount(){const p=this.p;if(this.props.interactive&&p.screen==='play')this.startPlay();}
+componentWillUnmount(){clearInterval(this.t);}
+get p(){const s=this.state,r=this.props;return{screen:s.screen??r.screen??'home',state:s.state??r.state??'',mood:s.mood??r.mood??'campfire',crowd:s.crowd??r.crowd??'friends',song:s.song??r.song??'campfire',mode:r.mode==='dark'?'dark':'light'};}
+go(patch){if(!this.props.interactive)return;clearInterval(this.t);this.tickN=0;this.setState({state:'',...patch,pst:null,line:0,count:3,tc:0});if(patch.screen==='play')this.startPlay();if(patch.screen==='tuner'&&patch.state!=='permission')this.startTuner();}
+startPlay(){this.setState({pst:'countin',count:3,line:0});this.t=setInterval(()=>{const st=this.state;if(st.pst==='countin'){if(st.count>1)this.setState({count:st.count-1});else this.setState({pst:'scrolling',line:0});}else if(st.pst==='scrolling'){this.tickN=(this.tickN||0)+1;if(this.tickN%3===0){const n=(st.line||0)+1;if(n>=(this.lyricCount||6))this.setState({pst:'finished'});else this.setState({line:n});}}},1000);}
+startTuner(){this.t=setInterval(()=>this.setState(s=>({tc:((s.tc||0)+1)%TSEQ.length})),1300);}
+moodV(id){const m=MOODS.find(x=>x.id===id)||CUSTOM;const n=SONGS.filter(s=>s.moods.includes(m.id)).length;return{...m,color:M(m.h),count:n,countLabel:n?(n+(n===1?' SONG':' SONGS')):'NO SONGS YET',sub:m.sub||''};}
+songView(id){const s=SONGS.find(x=>x.id===id)||SONGS[13];const sh=SHEETS[id]||SHEETS.campfire;const lines=parse(sh.text);const chords=[];lines.forEach(l=>!l.section&&l.words.forEach(w=>{if(w.c&&!chords.includes(w.c))chords.push(w.c);}));const first=lines.find(l=>!l.section);const mv=this.moodV(s.moods[0]);return{...s,mood:mv,crowdNames:s.crowds.map(c=>CROWDS.find(x=>x.id===c).name),keyL:s.key||'—',capoL:s.capo>0?'Fret '+s.capo:'None',lenL:s.dur||'3:30',strum:sh.strum.split('').map((a,i)=>({a:a==='D'?'↓':a==='U'?'↑':'·',beat:BEATS[i],c:a==='-'?'var(--fg3)':'var(--fg)'})),strumText:sh.strumText,intro:sh.intro,introX:sh.introX,first:first.words,diagrams:chords.map(diag),preview:lines.map(l=>({...l,lyric:!l.section})),lines,capoNote:s.capo>0,favFv:s.fav?"'FILL' 1":"'FILL' 0",favC:s.fav?'var(--chord)':'var(--fg)',readyBg:s.ready?'var(--ok)':'var(--fg3)',knobX:s.ready?'20px':'2px',sheetNote:SHEETS[id]?'':'Sample lyrics shown'};}
+renderVals(){
+const p=this.p,I=!!this.props.interactive,sc=p.screen,st=p.state,mode=p.mode;
+const go=patch=>e=>{if(e&&e.stopPropagation)e.stopPropagation();this.go(patch);};
+const mood=this.moodV(p.mood);
+const sv=this.songView(p.song);
+const songish=['song','play','edit'].includes(sc);
+const vars={...MODES[mode],'--mood':(songish?sv.mood:mood).color};
+const s={homeBg:(sc==='home'&&st!=='empty')||sc==='crowd'||(sc==='add'&&(st===''||st==='entry')),homeEmpty:sc==='home'&&st==='empty',crowd:sc==='crowd',addEntry:sc==='add'&&(st===''||st==='entry'),paste:sc==='add'&&st==='paste',imported:sc==='add'&&st==='import',list:sc==='list',listMenu:sc==='list'&&st==='menu',song:sc==='song',play:sc==='play',tuner:sc==='tuner'&&st!=='permission',tunerPerm:sc==='tuner'&&st==='permission',edit:sc==='edit',favs:sc==='favs',setlist:sc==='setlist',moods:sc==='moods',moodNew:sc==='moods'&&st==='new'};
+const stage=s.play||s.tuner||s.tunerPerm;
+// tuner
+const tq=I&&s.tuner?TSEQ[this.state.tc||0]:null;
+const tk=tq?tq[0]:(TUNE[st]?st:'listening');const T={...TUNE[tk]};if(tq&&tq[1]!=null)T.cents=tq[1];
+const tv={...T,top:'STANDARD · E A D G B E',hasNeedle:T.cents!=null,needleX:177-4+(T.cents||0)*3.52,centsL:T.cents==null?'':(T.cents>0?'+':T.cents<0?'−':'')+Math.abs(T.cents)+'¢',
+ticks:Array.from({length:21},(_,i)=>{const k=i-10;return{h:k===0?60:k%5===0?40:22,c:k===0?'var(--fg)':'var(--fg3)'};}),
+strings:['E','A','D','G','B','E'].map((n,i)=>{const a=i===T.active;return{n,num:String(6-i),bg:a?T.pillBg:'var(--chip)',fg:a?'var(--stage)':'var(--fg)',ring:a?'0 0 0 3px var(--stage), 0 0 0 5.5px '+T.pillBg:'none'};})};
+const glow=(c,a,pos)=>'radial-gradient(110% 50% at 50% '+(pos||'-6%')+', color-mix(in oklch, '+c+' '+a+', transparent), transparent 72%)';
+const phoneBg=stage?(s.tuner&&tk==='intune'?glow('var(--ok)','var(--ga)','30%')+', var(--stage)':glow('var(--mood)','var(--ga)')+', var(--stage)'):glow('var(--mood)','var(--ga)')+', var(--bg)';
+// home
+const moodTiles=MOODS.map(m=>({...this.moodV(m.id),onTap:go({screen:'crowd',mood:m.id})}));
+const readyCount=SONGS.filter(x=>x.ready).length;
+const tabDef=[['home','Moods','grid_view'],['favs','Favourites','star'],['setlist','Setlists','queue_music'],['tuner','Tuner','graphic_eq']];
+const activeTab=s.favs?'favs':'home';
+const tabs=tabDef.map(([id,name,icon])=>{const a=id===activeTab;return{name,icon,bg:a?'var(--chip)':'transparent',fg:a?'var(--chord)':'var(--fg)',fv:a?"'FILL' 1":"'FILL' 0",onTap:go({screen:id})};});
+const inMood=SONGS.filter(x=>x.moods.includes(mood.id));
+const crowdOpts=CROWDS.map(c=>{const n=inMood.filter(x=>x.crowds.includes(c.id)).length;return{...c,count:n+(n===1?' song':' songs'),onTap:go({screen:'list',crowd:c.id})};});
+// list
+const list=inMood.filter(x=>p.crowd==='anyone'||x.crowds.includes(p.crowd));
+const row=(x,i)=>({title:x.title,artist:x.artist,meta:meta(x),first:x.first||(x.start?'Starts on '+x.start:'No cue yet. Add how it starts.'),readyIcon:x.ready?'check_circle':'radio_button_unchecked',readyFv:x.ready?"'FILL' 1":"'FILL' 0",readyColor:x.ready?'var(--ok)':'var(--fg3)',starFv:x.fav?"'FILL' 1":"'FILL' 0",starColor:x.fav?'var(--chord)':'var(--fg3)',border:i?'0.5px solid var(--line)':'none',onTap:go({screen:'song',song:x.id}),mood:this.moodV(x.moods[0])});
+const rdy=list.filter(x=>x.ready),rest=list.filter(x=>!x.ready);
+const listSections=[];if(rdy.length)listSections.push({label:'READY TO PLAY',count:String(rdy.length),rows:rdy.map(row)});if(rest.length)listSections.push({label:'STILL LEARNING',count:String(rest.length),rows:rest.map(row)});
+const crowdName=p.crowd==='anyone'?'Anyone':CROWDS.find(c=>c.id===p.crowd).name;
+const crowdChips=[{id:'anyone',name:'Anyone'},...CROWDS].map(c=>{const a=c.id===p.crowd;return{name:c.name,bg:a?'var(--fg)':'var(--chip)',fg:a?'var(--bg)':'var(--fg)',icon:a?'check':'',iconW:a?'18px':'0px',onTap:go({screen:'list',crowd:c.id})};});
+const alt=CROWDS.find(c=>inMood.some(x=>x.crowds.includes(c.id)));
+const emptyV={title:'No '+mood.name+' songs for '+crowdName+' yet',body:inMood.length?(mood.name+' has '+inMood.length+(inMood.length===1?' song':' songs')+', just not for this crowd.'):'Add a song and tag it '+mood.name+'.',alt:alt?'Show for '+alt.name:'Show all crowds',onAlt:go({screen:'list',crowd:alt?alt.id:'anyone'})};
+const menuRow=listSections.length?listSections[0].rows[0]:null;
+// play
+const pst=I?(this.state.pst||'countin'):(st||'scrolling');
+const isDeva=p.song==='saanjh';
+let cur=I?(this.state.line||0):({countin:0,scrolling:isDeva?1:2,paused:isDeva?1:2,speed:isDeva?2:3,finished:99}[pst]);
+let li=-1,curIdx=0;const plines=sv.lines.map((l,ai)=>{if(l.section)return{section:true,lyric:false,label:l.label};li++;const rel=li<cur?'past':li===cur?'cur':'next';if(rel==='cur')curIdx=ai;return{section:false,lyric:true,words:l.words,color:rel==='past'?'var(--fg3)':rel==='cur'?'var(--fg)':'var(--fg2)',chord:rel==='past'?'var(--fg3)':'var(--chord)',bg:rel==='cur'?'var(--chip)':'transparent'};});
+this.lyricCount=li+1;if(cur>=99)curIdx=plines.length-1;
+const pv={lines:plines.slice(Math.max(0,curIdx-(cur>=99?4:2))),label:sv.title.toUpperCase()+' · '+sv.keyL,progress:{countin:'0%',scrolling:'38%',paused:'38%',speed:'52%',finished:'100%'}[pst],remain:{countin:'−'+sv.lenL,scrolling:'−1:42',paused:'−1:42',speed:'−1:19',finished:'0:00'}[pst],countin:pst==='countin',paused:pst==='paused',speed:pst==='speed',finished:pst==='finished',count:I?String(this.state.count||3):'2',dim:pst==='countin'||pst==='finished'?'0.25':'1'};
+const tapRoot=I&&s.play?(()=>{const ps=this.state.pst;if(ps==='countin'){this.setState({pst:'scrolling'});}else if(ps==='scrolling')this.setState({pst:'paused'});else if(ps==='paused')this.setState({pst:'scrolling'});else if(ps==='finished')this.go({screen:'song',song:'perfect'});}):undefined;
+// paste / edit
+const PASTE="artist: Moodchords Sample\nkey: G\nlength: 2:45\n\nVERSE 1\n[G]Sparks are rising [C]up into the [G]sky\n[Em]Friends around the [C]fire and the [D]night rolls by\nCHORUS\n[C]Sing it loud, [G]sing it slow\n[D]Every song we [Hm]used to know";
+const pasteLines=PASTE.split('\n').map((l,i)=>({n:String(i+1),tokens:toks(l),bg:i===9?'var(--errbg)':'transparent',err:i===9?'[Hm] isn\'t a chord we know. Did you mean [Bm]?':'',hasErr:i===9}));
+const editLines=SHEETS.campfire.text.split('\n').map((l,i)=>({n:String(i+1),tokens:toks(l)}));
+const ev={preview:st==='preview',editDisplay:st==='preview'?'none':'block',editBg:st==='preview'?'transparent':'var(--card2)',prevBg:st==='preview'?'var(--card2)':'transparent',editSh:st==='preview'?'none':'var(--shadow)',prevSh:st==='preview'?'var(--shadow)':'none',lines:editLines,moods:['campfire','romantic','nostalgic','jolly','party'].map(id=>{const m=this.moodV(id);const a=id==='campfire';return{name:m.name,icon:a?'check':m.icon,bg:a?m.color:'var(--chip)',fg:a?'#1E1915':'var(--fg)'};}),crowds:CROWDS.map(c=>{const a=c.id==='friends'||c.id==='mixed';return{name:c.name,icon:a?'check':c.icon,bg:a?'var(--fg)':'var(--chip)',fg:a?'var(--bg)':'var(--fg)'};})};
+// favs, setlist
+const favRows=SONGS.filter(x=>x.fav).map((x,i)=>({...row(x,i),onTap:go({screen:'song',song:x.id})}));
+const SET=[['campfire','2:45'],['perfect','4:23'],['wonderwall','4:18'],['resham','3:30'],['birds','3:00']];
+const setRows=SET.map(([id,d],i)=>{const x=SONGS.find(y=>y.id===id);const lift=i===2;return{n:String(i+1),title:x.title,artist:x.artist,meta:[x.key,x.capo>0?'CAPO '+x.capo:'NO CAPO'].filter(Boolean).join(' · '),dur:d,assumed:id==='resham'?'ASSUMED':'',mood:this.moodV(x.moods[0]),bg:lift?'var(--sheet)':'transparent',sh:lift?'0 18px 40px rgba(0,0,0,0.22), 0 0 0 0.5px var(--line)':'none',tf:lift?'scale(1.035) translateY(4px)':'none',border:i&&i!==3?'0.5px solid var(--line)':'none',radius:lift?'20px':'0px',z:lift?'2':'1'};});
+// moods manage
+const moodRows=[...MOODS,CUSTOM].map((m,i)=>{const v=this.moodV(m.id);return{...v,border:i?'0.5px solid var(--line)':'none',isCustom:!!m.custom,isDefault:!m.custom,countLabel:m.custom?'0 SONGS':v.countLabel};});
+const swatches=[10,50,80,105,150,175,200,225,245,270,290,330].map(h=>({c:M(h),ring:h===270?'0 0 0 3px var(--sheet), 0 0 0 5.5px var(--fg)':'none',check:h===270?'check':''}));
+const icons=['bedtime','nightlife','local_cafe','hiking','beach_access','music_note','piano','mic_external_on','park','star','cake','flight'].map(n=>({n,bg:n==='bedtime'?'var(--fg)':'var(--chip)',fg:n==='bedtime'?'var(--sheet)':'var(--fg)'}));
+const custom=this.moodV('hostel');
+// guide
+const gLine=(txt,rel)=>({words:parse(txt)[0].words,color:rel==='past'?'var(--fg3)':rel==='cur'?'var(--fg)':'var(--fg2)',chord:rel==='past'?'var(--fg3)':'var(--chord)',bg:rel==='cur'?'var(--chip)':'transparent',label:rel==='past'?'PAST · faded':rel==='cur'?'CURRENT · highlighted':'NEXT · fg2'});
+const guide={moods:[...MOODS].map(m=>({...this.moodV(m.id),val:'oklch(0.80 0.11 '+m.h+')'})),lines:[gLine('[G]Sparks are rising [C]up into the [G]sky','past'),gLine('[Em]Friends around the [C]fire and the [D]night rolls by','cur'),gLine('[C]Sing it loud, [G]sing it slow','next')],hang:gLine('[A7sus4]Friends around the [Cadd9]fire and the [Dsus4]night','next').words,deva:gLine('[Am]साँझ परेपछि [F]पहाड हेर्छु','cur').words,diagrams:['G','Em7','F','Cadd9'].map(diag),meters:[['flat',-18],['intune',0],['sharp',12]].map(([k,c])=>({label:TUNE[k].status,icon:TUNE[k].icon,color:TUNE[k].pillBg,x:150-4+c*3,cents:(c>0?'+':c<0?'−':'')+Math.abs(c)+'¢',zone:k==='intune'?'var(--okbg)':'var(--chip)'})),gticks:Array.from({length:21},(_,i)=>({h:i===10?40:(i-10)%5===0?28:14}))};
+return{vars,isPhone:sc!=='guide',isGuide:sc==='guide',phoneBg,s,showTabs:s.homeBg||s.homeEmpty||s.favs,tabs,moodTiles,readyCount,mood,crowdOpts,anyoneLabel:'Anyone · all '+inMood.length+' songs',pickAnyone:go({screen:'list',crowd:'anyone'}),
+listSections,listEmpty:!list.length,listHas:!!list.length,crowdChips,emptyV,menuRow,menuOn:s.listMenu&&!!menuRow,sv,pv,tv,tapRoot,pasteLines,ev,favRows,setRows,moodRows,swatches,icons,custom,guide,modeLabel:mode==='dark'?'Stage (dark)':'Light',
+goHome:go({screen:'home'}),goAdd:go({screen:'add',state:'entry'}),goPaste:go({screen:'add',state:'paste'}),goImport:go({screen:'add',state:'import'}),goMoods:go({screen:'moods'}),goNewMood:go({screen:'moods',state:'new'}),goSurprise:go({screen:'song',song:'wonderwall'}),goList:go({screen:'list'}),goEdit:go({screen:'edit'}),goSong:go({screen:'song'}),goPlay:go({screen:'play'}),goTuner:go({screen:'tuner'}),goJam:go({screen:'play',song:'campfire'}),goPreview:go({screen:'edit',state:'preview'}),goEditor:go({screen:'edit',state:''}),goPerm:go({screen:'tuner',state:''})};
+}
+}
+</script>
+</body>
+</html>
