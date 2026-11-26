@@ -131,3 +131,9 @@ The owner is building it for personal use first, with a public App Store release
 - **Tab bar inset:** use `.clearsTabBar()` *inside* each tab's NavigationStack. A safe-area inset set outside the stack doesn't reach its content.
 - **Text editor:** smart quotes and dashes are off (curly quotes break `{title: …}`), and highlighting is skipped while the keyboard has marked (composing) text.
 - After each change: build, run in the simulator, and check against the design file. Keep previews working with in-memory SwiftData.
+
+## Web app (PWA) in `web/`
+- A plain HTML/CSS/JS rebuild of the app so it runs on iPhone, Android and computers without an app store. Live at https://neuashwin.github.io/moodchords/ (GitHub Pages via `.github/workflows/pages.yml`; repo Settings → Pages → Source must be "GitHub Actions").
+- `web/core.js` ports `Core/` (parser, converter, chord shapes, YIN, source editing); keep it in step with the Swift logic. Tests: `node --experimental-default-type=module web/tests/core.test.mjs`.
+- Storage is `localStorage` in the browser (key `moodchords.v1`), with a JSON backup/restore on the Moods screen. No songs are bundled; only the two original sample songs.
+- After changing any file in `web/`, bump `VERSION` in `web/sw.js` so installed copies update.

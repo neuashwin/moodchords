@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Moodchords</title>
+  <meta name="description" content="A songbook for singer-guitarists: songs sorted by mood and who's listening, with hands-free auto-scroll and a guitar tuner. English, Nepali and Hindi.">
+  <meta name="theme-color" content="#EFE9E0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15110E" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Moodchords">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preload" href="fonts/barlow-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/barlow-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <nav id="tabbar" class="tabbar glass" aria-label="Sections"></nav>
+  <div id="layer"></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <noscript><p style="padding:24px;font-family:sans-serif">Moodchords needs JavaScript to run.</p></noscript>
+</body>
+</html>

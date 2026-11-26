@@ -7,6 +7,15 @@ scrolls by itself, hands-free. Songs can be in English, Nepali or Hindi (Devanag
 
 Built with SwiftUI and SwiftData. Everything stays on the phone: no accounts, no network.
 
+## Use it now, on any phone (free)
+
+There's also a **web app version** that works on iPhone, Android and computers, with no app store:
+
+**👉 https://neuashwin.github.io/moodchords/**
+
+On iPhone: open it in Safari → Share → **Add to Home Screen**. On Android: open it in Chrome → **Install app**.
+It works offline once installed. The code is in [`web/`](web/).
+
 ## Features
 
 - **Mood grid** with custom moods (add, rename, recolour, reorder), and a
@@ -83,6 +92,7 @@ have the rights to.
 | `GuitarAppFinal/GuitarAppFinal/Screens/` | The app's screens |
 | `GuitarAppFinal/GuitarAppFinalTests/` | Unit tests (Swift Testing) |
 | `PRD.md`, `M2-PLAN.md`, `Design/` | Product spec, build plan and the UI design |
+| `web/` | The web app (PWA) version, published to GitHub Pages |
 
 ## Licence
 
